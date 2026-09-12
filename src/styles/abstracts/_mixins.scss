@@ -7,6 +7,15 @@ $bp-small:  480px;
 @mixin mobile { @media (max-width: $bp-mobile) { @content; } }
 @mixin small  { @media (max-width: $bp-small)  { @content; } }
 
+// Único mixin de min-width, e existe por um motivo medido: a navegação lateral
+// das páginas de leitura mora na calha à esquerda da coluna de texto. Com
+// --container-max de 1140px e --measure de 68ch, essa calha só passa de ~190px
+// — largura mínima para os rótulos — a partir de 1188px de viewport. Abaixo
+// disso a navegação volta a ser um bloco acima do artigo.
+$bp-desktop: 1200px;
+
+@mixin desktop { @media (min-width: $bp-desktop) { @content; } }
+
 // Card hover — elevação + borda dourada no topo (padrão de card do manual)
 @mixin card-hover($translate: -6px) {
     transition: transform var(--transition-base), box-shadow var(--transition-base),

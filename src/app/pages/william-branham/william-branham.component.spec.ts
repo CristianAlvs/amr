@@ -29,17 +29,17 @@ describe('WilliamBranhamComponent', () => {
     expect(alvo?.getAttribute('tabindex')).toBe('-1');
   });
 
-  /* Cada item do índice tem de apontar para uma seção existente — um fragment
-     órfão não dá erro, só não rola. */
-  it('todo item do índice aponta para uma seção da página', () => {
+  /* Cada item da navegação tem de apontar para uma seção existente — um
+     fragment órfão não dá erro, só não rola, e o destaque nunca acende nele. */
+  it('todo item da navegação aponta para uma seção da página', () => {
     const el = fixture.nativeElement as HTMLElement;
-    const itens = Array.from(el.querySelectorAll<HTMLAnchorElement>('.artigo__indice a'));
+    const itens = Array.from(el.querySelectorAll<HTMLAnchorElement>('.artigo-nav__link'));
     expect(itens.length).toBe(8);
 
     for (const item of itens) {
       const fragment = item.getAttribute('href')?.split('#')[1];
       expect(el.querySelector(`section[id="${fragment}"]`))
-        .withContext(`índice aponta para #${fragment}`).toBeTruthy();
+        .withContext(`navegação aponta para #${fragment}`).toBeTruthy();
     }
   });
 });

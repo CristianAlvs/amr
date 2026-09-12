@@ -4,22 +4,10 @@
   subtitulo="A vida e o ministério do homem por quem Deus cumpriu a promessa de Malaquias 4 e de Apocalipse 10:7, antes do grande e terrível Dia do Senhor." />
 
 <div class="pagina">
-  <div class="container">
-    <article class="artigo" id="conteudo" tabindex="-1">
+  <div class="container artigo-layout">
+    <app-artigo-nav [secoes]="secoes" />
 
-      <nav class="artigo__indice animate-fade-up" aria-labelledby="indice-titulo">
-        <h2 id="indice-titulo">Nesta página</h2>
-        <ol>
-          <li><a [routerLink]="[]" fragment="profeta-hoje">Enviaria Deus um profeta para os dias de hoje?</a></li>
-          <li><a [routerLink]="[]" fragment="sinais">Quais sinais Deus usa para vindicar Seus profetas?</a></li>
-          <li><a [routerLink]="[]" fragment="elias">Elias virá primeiro e restaurará todas as coisas</a></li>
-          <li><a [routerLink]="[]" fragment="quem-e">Quem é William Marrion Branham?</a></li>
-          <li><a [routerLink]="[]" fragment="mocidade">Os anos de mocidade</a></li>
-          <li><a [routerLink]="[]" fragment="chamado">Deus o chama para a Sua grande obra</a></li>
-          <li><a [routerLink]="[]" fragment="coluna-de-fogo">A Coluna de Fogo</a></li>
-          <li><a [routerLink]="[]" fragment="nuvem">A Nuvem Sobrenatural</a></li>
-        </ol>
-      </nav>
+    <article class="artigo" id="conteudo" tabindex="-1">
 
       <section class="artigo__bloco" id="profeta-hoje">
         <h2>Enviaria Deus um profeta para os dias de hoje?</h2>

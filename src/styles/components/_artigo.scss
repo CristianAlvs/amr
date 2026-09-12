@@ -9,10 +9,32 @@
    gasto duas vezes pelo mesmo CSS.
    ============================================================ */
 
+/* Calha da navegação + coluna de texto.
+
+   As colunas são 1fr / --measure / 1fr de propósito: a coluna de texto fica
+   exatamente onde ficaria se estivesse sozinha e centrada, o que mantém o
+   título da faixa de cabeçalho (que também é --measure centrado) na mesma
+   vertical. A navegação ocupa a calha esquerda; a direita fica vazia e serve
+   de respiro. Abaixo de 1200px a calha não tem largura útil, então volta tudo
+   a uma coluna e a navegação vira um bloco acima do texto (é a ordem do DOM). */
+.artigo-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+    padding-block: var(--section-py);
+
+    @include desktop {
+        grid-template-columns: 1fr minmax(0, var(--measure)) 1fr;
+        align-items: start;
+
+        > app-artigo-nav { grid-area: 1 / 1; }
+        > .artigo        { grid-area: 1 / 2; }
+    }
+}
+
 .artigo {
     max-width: var(--measure);
     margin-inline: auto;
-    padding-block: var(--section-py);
 
     /* Parágrafo de leitura. line-height maior que o do resto do site: aqui o
        leitor encara blocos longos, não três linhas de card. */
@@ -32,62 +54,19 @@
         font-weight: 600;
     }
 
-    &__indice {
-        padding: var(--space-6) var(--space-8);
-        background: var(--color-primary-bg);
-        border-radius: var(--radius-md);
-        border-left: 4px solid var(--color-primary);
-
-        h2 {
-            @include label-uppercase;
-            color: var(--color-primary);
-            margin-bottom: var(--space-4);
-        }
-
-        ol {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-2);
-            list-style: none;
-            counter-reset: indice;
-        }
-
-        li {
-            counter-increment: indice;
-
-            &::before {
-                content: counter(indice) '.';
-                color: var(--color-accent-deep);
-                font-weight: 600;
-                margin-right: var(--space-2);
-            }
-        }
-
-        a {
-            color: var(--color-text);
-            font-size: var(--text-sm);
-            font-weight: 600;
-            text-decoration: underline;
-            text-decoration-color: var(--color-border-strong);
-            text-underline-offset: 3px;
-            transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
-
-            &:hover {
-                color: var(--color-primary);
-                text-decoration-color: var(--color-primary);
-            }
-        }
-
-        @include mobile {
-            padding: var(--space-5) var(--space-6);
-        }
-    }
-
-    /* Uma seção do artigo. scroll-margin-top existe porque o índice rola até
-       aqui — sem ele o h2 encosta na borda superior da janela. */
+    /* Uma seção do artigo. O scroll-margin-top é o que impede o h2 de encostar
+       na borda superior da janela quando a navegação lateral rola até aqui;
+       precisa cobrir a LINHA_DE_LEITURA do ArtigoNavComponent, senão a seção
+       para acima da linha e o destaque acende na seção seguinte. */
     &__bloco {
         margin-top: var(--space-16);
-        scroll-margin-top: var(--space-8);
+        scroll-margin-top: var(--space-16);
+
+        /* No desktop a navegação sai de cima do texto e o primeiro bloco passa
+           a encostar no topo da coluna. */
+        &:first-child {
+            margin-top: 0;
+        }
 
         h2 {
             font-family: var(--font-display);

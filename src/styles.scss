@@ -58,7 +58,7 @@
 @media print {
   // O logo do hero fica; o que não serve no papel são os links
   .skip-link, .nav__list, .footer__nav,
-  .page-header__voltar, .artigo__indice, .artigo__fim { display: none !important; }
+  .page-header__voltar, .artigo-nav, .artigo__fim { display: none !important; }
   body { background: #fff; color: #000; }
   .hero { min-height: auto; }
   .hero__bg { display: none; }

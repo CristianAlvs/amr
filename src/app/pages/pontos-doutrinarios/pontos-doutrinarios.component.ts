@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ArtigoNavComponent, SecaoArtigo } from '../../layout/artigo-nav/artigo-nav.component';
 import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
 
 export interface Versiculo {
@@ -14,11 +15,19 @@ export interface Paralelo {
 
 @Component({
     selector: 'app-pontos-doutrinarios',
-    imports: [PageHeaderComponent, RouterLink],
+    imports: [PageHeaderComponent, ArtigoNavComponent, RouterLink],
     templateUrl: './pontos-doutrinarios.component.html',
     styleUrl: './pontos-doutrinarios.component.scss'
 })
 export class PontosDoutrinariosComponent {
+    /** Rótulos curtos: a calha da navegação tem ~190px, o h2 inteiro não cabe. */
+    readonly secoes: readonly SecaoArtigo[] = [
+        { fragment: 'batismo',            rotulo: 'O batismo em nome de Jesus' },
+        { fragment: 'deidade',            rotulo: 'Jesus, Senhor e Cristo' },
+        { fragment: 'jeova',              rotulo: 'O Jeová do Velho Testamento' },
+        { fragment: 'palavra-ao-profeta', rotulo: 'A Palavra vem ao profeta' }
+    ];
+
     /**
      * Único trecho da página que sai do template: doze pares de versículos com
      * a mesma forma repetida. Em HTML seriam 24 blocos idênticos a menos do

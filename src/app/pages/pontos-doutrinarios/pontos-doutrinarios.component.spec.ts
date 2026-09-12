@@ -29,15 +29,15 @@ describe('PontosDoutrinariosComponent', () => {
     expect(alvo?.getAttribute('tabindex')).toBe('-1');
   });
 
-  it('todo item do índice aponta para uma seção da página', () => {
+  it('todo item da navegação aponta para uma seção da página', () => {
     const el = fixture.nativeElement as HTMLElement;
-    const itens = Array.from(el.querySelectorAll<HTMLAnchorElement>('.artigo__indice a'));
+    const itens = Array.from(el.querySelectorAll<HTMLAnchorElement>('.artigo-nav__link'));
     expect(itens.length).toBe(4);
 
     for (const item of itens) {
       const fragment = item.getAttribute('href')?.split('#')[1];
       expect(el.querySelector(`section[id="${fragment}"]`))
-        .withContext(`índice aponta para #${fragment}`).toBeTruthy();
+        .withContext(`navegação aponta para #${fragment}`).toBeTruthy();
     }
   });
 

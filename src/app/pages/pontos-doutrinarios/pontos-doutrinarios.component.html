@@ -4,18 +4,10 @@
   subtitulo="Quatro verdades que sustentamos, cada uma firmada verso a verso na Palavra de Deus." />
 
 <div class="pagina">
-  <div class="container">
-    <article class="artigo" id="conteudo" tabindex="-1">
+  <div class="container artigo-layout">
+    <app-artigo-nav [secoes]="secoes" />
 
-      <nav class="artigo__indice animate-fade-up" aria-labelledby="indice-titulo">
-        <h2 id="indice-titulo">Nesta página</h2>
-        <ol>
-          <li><a [routerLink]="[]" fragment="batismo">Por que batizar em nome do Senhor Jesus Cristo?</a></li>
-          <li><a [routerLink]="[]" fragment="deidade">Jesus, Senhor e Cristo</a></li>
-          <li><a [routerLink]="[]" fragment="jeova">Jesus Cristo é o Jeová do Velho Testamento</a></li>
-          <li><a [routerLink]="[]" fragment="palavra-ao-profeta">A Palavra vem ao profeta</a></li>
-        </ol>
-      </nav>
+    <article class="artigo" id="conteudo" tabindex="-1">
 
       <!-- ============ 1 ============ -->
       <section class="artigo__bloco" id="batismo">

@@ -29,10 +29,11 @@ src/app/
     sections/<nome>/       uma seção da página (hero, sobre, agenda, contato, ...)
   pages/                   páginas de leitura longa, uma rota cada:
                            william-branham, pontos-doutrinarios
-  layout/                  navbar, footer, page-header — a navbar é renderizada
-                           por hero.component.html, dentro do próprio hero; não
-                           há barra fixa, ela rola junto e sai de cena com ele.
-                           O page-header é a faixa de título das rotas de /pages
+  layout/                  navbar, footer, page-header, artigo-nav — a navbar é
+                           renderizada por hero.component.html, dentro do próprio
+                           hero; não há barra fixa, ela rola junto e sai de cena
+                           com ele. O page-header é a faixa de título das rotas
+                           de /pages, e o artigo-nav a navegação lateral delas
   shared/ui/               cards (culto-card, pastor-card, schedule-event) — todos ainda
                            placeholder; ver Pendências
   services/                scroll-reveal (observer de animação), seo (title/meta
@@ -62,6 +63,20 @@ Duas consequências que não são óbvias:
 da coluna — `--container-max` (1140px) é largo demais para texto corrido. É global, e não SCSS de
 componente, porque as duas páginas compartilham o mesmo estilo e o budget de `anyComponentStyle`
 é 4 kB.
+
+`.artigo-layout` é o grid `1fr --measure 1fr`: a coluna de texto fica exatamente onde ficaria se
+estivesse sozinha e centrada — o que alinha o `h1` da faixa de cabeçalho ao corpo do artigo —, e
+a navegação lateral ocupa a calha esquerda. Essa calha só passa de ~190px a partir de 1188px de
+viewport, e é por isso que existe `@include desktop` ($bp-desktop: 1200px), **o único mixin de
+min-width do projeto**. Abaixo disso o grid volta a uma coluna e a navegação vira um bloco acima
+do texto — o mesmo DOM, sem duplicação.
+
+O destaque da seção em leitura no `artigo-nav` é decidido por rolagem, comparando o topo de cada
+seção com uma linha fixa, e **não** por IntersectionObserver: as seções destas páginas chegam a
+ser várias vezes mais altas que a janela, e nessa escala um threshold de IO ou nunca dispara ou
+acende duas seções ao mesmo tempo. O `scroll-margin-top` de `.artigo__bloco` precisa ficar abaixo
+da `LINHA_DE_LEITURA` do componente, senão a seção clicada para acima da linha e o destaque
+acende na seguinte.
 
 `src/styles` está em `stylePreprocessorOptions.includePaths`, então dentro de qualquer
 `.component.scss` o import é sempre:
