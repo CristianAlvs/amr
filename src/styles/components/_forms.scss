@@ -1,0 +1,144 @@
+@use '../abstracts/mixins' as *;
+
+/* Formulário e links sociais. Globais e não do componente de contato: são
+   padrões genéricos, como .btn, e mantê-los dentro de contato.component.scss
+   os deixava inacessíveis a qualquer outra seção — além de estourar o
+   orçamento de 4 kB por componente. */
+
+// --- Social ---
+.social {
+    &__links {
+        display: flex;
+        gap: var(--space-3);
+        flex-wrap: wrap;
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-3) var(--space-5);
+        background: var(--color-bg-white);
+        border: 1.5px solid var(--color-border);
+        border-radius: var(--radius-full);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-text-muted);
+        transition: all var(--transition-base);
+        box-shadow: var(--shadow-sm);
+
+        &:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            background: var(--color-primary-bg);
+        }
+    }
+}
+
+// --- Form ---
+.form__group { margin-bottom: var(--space-4); }
+
+/* Os três campos curtos numa coluna e a mensagem ao lado, ocupando a altura
+   das três. Antes o formulário empilhava tudo: 537px de altura para 4 campos,
+   num card de 1100px de largura quase todo vazio à direita. */
+.form__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 var(--space-5);
+}
+
+.form__group--mensagem {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    display: flex;
+    flex-direction: column;
+
+    .form__textarea {
+        flex: 1;
+        min-height: 0;
+    }
+}
+
+@include mobile {
+    .form__grid { grid-template-columns: 1fr; }
+
+    .form__group--mensagem {
+        grid-column: auto;
+        grid-row: auto;
+
+        .form__textarea { min-height: 110px; }
+    }
+}
+
+.form__label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+}
+
+.form__input,
+.form__textarea {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form__input::placeholder,
+.form__textarea::placeholder { color: var(--color-text-subtle); }
+
+.form__input:focus-visible,
+.form__textarea:focus-visible {
+    border-color: var(--color-primary);
+    background: var(--color-bg-white);
+}
+
+.form__input.invalid,
+.form__textarea.invalid { border-color: var(--color-danger); }
+
+.form__textarea { resize: vertical; min-height: 96px; }
+
+/* Sem min-height: reservava 16px por campo (64px no total) para texto que
+   quase nunca aparece. O <span> continua no DOM porque o aria-describedby de
+   cada campo aponta para ele — referência ARIA quebrada seria pior que o
+   deslocamento que só ocorre quando há erro. */
+.form__error {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--color-danger);
+
+    &:not(:empty) {
+        margin-top: var(--space-1);
+    }
+}
+
+.form__error-box {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background: color-mix(in srgb, var(--color-danger) 8%, var(--color-bg-white));
+    border: 1px solid var(--color-danger);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-danger);
+    text-align: center;
+}
+
+.form__success {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-success-bg);
+    border: 1px solid var(--color-success);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-success);
+    text-align: center;
+}

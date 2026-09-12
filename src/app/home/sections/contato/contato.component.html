@@ -1,0 +1,115 @@
+<section class="section contato" id="contato">
+      <div class="container">
+        <header class="section__header animate-on-scroll">
+          <span class="section__eyebrow">Fale Conosco</span>
+          <h2 class="section__title">Entre em <em>Contato</em></h2>
+        </header>
+
+        <ul class="contato__list animate-on-scroll" role="list">
+              <li class="contato__item contato__item--inicio">
+                <span class="contato__item-label">
+                  <span class="contato__item-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </span>
+                  Endereço
+                </span>
+                <span class="contato__item-row">
+                  <span class="contato__item-value">Rua Iguatinga, 171 — Santo Amaro, São Paulo — SP</span>
+                  <button type="button" class="contato__copiar"
+                          [class.copiado]="copiado() === 'endereco'"
+                          (click)="copiar('endereco', 'Rua Iguatinga, 171 — Santo Amaro, São Paulo — SP')">
+                    @if (copiado() === 'endereco') {
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    } @else {
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    }
+                    <span class="sr-only">Copiar endereço</span>
+                  </button>
+                </span>
+              </li>
+              <li class="contato__item contato__item--fim">
+                <span class="contato__item-label">
+                  <span class="contato__item-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.61 4.52 2 2 0 0 1 3.6 2.32h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.02-.87a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.97 17z"/></svg>
+                  </span>
+                  Telefone / WhatsApp
+                </span>
+                <span class="contato__item-row">
+                  <a href="https://wa.me/5511991558182" target="_blank" rel="noopener noreferrer" class="contato__item-value">
+                    (11) 99155-8182<span class="sr-only">(abre o WhatsApp em nova aba)</span>
+                  </a>
+                  <button type="button" class="contato__copiar"
+                          [class.copiado]="copiado() === 'telefone'"
+                          (click)="copiar('telefone', '(11) 99155-8182')">
+                    @if (copiado() === 'telefone') {
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    } @else {
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    }
+                    <span class="sr-only">Copiar telefone</span>
+                  </button>
+                </span>
+              </li>
+        </ul>
+
+        <p class="sr-only" role="status">
+          @if (copiado() === 'endereco') { Endereço copiado. }
+          @if (copiado() === 'telefone') { Telefone copiado. }
+        </p>
+
+        <div class="contato__form-wrapper animate-on-scroll">
+            <form class="contato__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+              <h3 class="contato__form-title">Envie uma mensagem</h3>
+
+              <div class="form__grid">
+                <div class="form__group">
+                  <label for="nome" class="form__label">Nome completo</label>
+                  <input type="text" id="nome" formControlName="nome" class="form__input"
+                         [class.invalid]="invalido('nome')" [attr.aria-invalid]="invalido('nome')"
+                         aria-describedby="nome-erro" placeholder="Seu nome" autocomplete="name" />
+                  <span class="form__error" id="nome-erro" role="alert">{{ erro('nome') }}</span>
+                </div>
+
+                <div class="form__group">
+                  <label for="email" class="form__label">E-mail</label>
+                  <input type="email" id="email" formControlName="email" class="form__input"
+                         [class.invalid]="invalido('email')" [attr.aria-invalid]="invalido('email')"
+                         aria-describedby="email-erro" placeholder="seu@email.com" autocomplete="email" />
+                  <span class="form__error" id="email-erro" role="alert">{{ erro('email') }}</span>
+                </div>
+
+                <div class="form__group">
+                  <label for="assunto" class="form__label">Assunto</label>
+                  <input type="text" id="assunto" formControlName="assunto" class="form__input"
+                         [class.invalid]="invalido('assunto')" [attr.aria-invalid]="invalido('assunto')"
+                         aria-describedby="assunto-erro" placeholder="Como podemos ajudar?" />
+                  <span class="form__error" id="assunto-erro" role="alert">{{ erro('assunto') }}</span>
+                </div>
+
+                <div class="form__group form__group--mensagem">
+                  <label for="mensagem" class="form__label">Mensagem</label>
+                  <textarea id="mensagem" formControlName="mensagem" class="form__textarea"
+                            [class.invalid]="invalido('mensagem')" [attr.aria-invalid]="invalido('mensagem')"
+                            aria-describedby="mensagem-erro" placeholder="Escreva sua mensagem aqui..."></textarea>
+                  <span class="form__error" id="mensagem-erro" role="alert">{{ erro('mensagem') }}</span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full" [disabled]="estado() === 'enviando'">
+                {{ estado() === 'enviando' ? 'Enviando…' : 'Enviar Mensagem' }}
+              </button>
+
+              @if (estado() === 'sucesso') {
+                <div class="form__success" role="status">
+                  Mensagem enviada. Entraremos em contato em breve.
+                </div>
+              }
+              @if (estado() === 'erro') {
+                <div class="form__error-box" role="alert">
+                  Não foi possível enviar agora. Fale conosco pelo WhatsApp ou tente mais tarde.
+                </div>
+              }
+          </form>
+        </div>
+      </div>
+    </section>

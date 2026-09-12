@@ -1,0 +1,168 @@
+@use 'abstracts/mixins' as *;
+
+.contato {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+
+    /* O cabeçalho desta seção é mais discreto que o das outras: aqui o peso
+       visual deve ficar no formulário, não no título. */
+    .section__header {
+        margin-bottom: clamp(var(--space-6), 4vw, var(--space-10));
+    }
+
+    /* Na largura de desktop os dois dados ancoram nas bordas da faixa —
+       telefone à esquerda, endereço à direita — emoldurando o formulário que
+       vem abaixo. Abaixo de 768px não há largura para isso: eles empilham e
+       voltam a ser dois blocos centrados. */
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--space-4) clamp(var(--space-6), 5vw, var(--space-12));
+        margin-bottom: clamp(var(--space-5), 3vw, var(--space-8));
+
+        @include mobile {
+            justify-content: center;
+        }
+    }
+
+    /* Cada dado é um bloco centrado em si mesmo: rótulo com o ícone em cima,
+       valor embaixo. Com o ícone à esquerda de um texto alinhado à esquerda,
+       o telefone (curto) e o endereço (longo) tinham eixos diferentes e o par
+       nunca fechava — e, ao quebrarem no mobile, um parecia centrado e o
+       outro não. Aqui os dois compartilham o mesmo eixo em qualquer largura. */
+    &__item {
+        display: flex;
+        flex-direction: column;
+        /* Vão mínimo: o entrelinhamento das duas caixas (1.3 no rótulo, 1.7 no
+           valor) já faz quase todo o trabalho, mas encostados eles perdiam a
+           separação entre rótulo e dado. */
+        gap: var(--space-1);
+
+        &--inicio {
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        &--fim {
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        /* Vem depois dos modificadores de propósito: mesma especificidade,
+           então é a ordem no arquivo que devolve o centro no mobile. */
+        @include mobile {
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    /* Sem a caixa de 44px: o ícone sozinho já marca a linha, e o quadrado
+       colorido fazia cada dado parecer um botão. */
+    &__item-icon {
+        flex-shrink: 0;
+        display: flex;
+        color: var(--color-primary);
+    }
+
+    &__item-label {
+        @include label-uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        /* O 1.7 do corpo abria 20px de caixa num rótulo de 12px */
+        line-height: 1.3;
+        color: var(--color-text-subtle);
+    }
+
+    &__item-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    /* Desenha 28px para não competir com o dado que acompanha, mas o alvo de
+       toque tem os 44px do WCAG 2.5.5 — pelo pseudo-elemento, como no valor,
+       para não inflar a linha. */
+    &__copiar {
+        position: relative;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: var(--radius-sm);
+        color: var(--color-text-subtle);
+        transition: color var(--transition-fast), background var(--transition-fast);
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 44px;
+            height: 44px;
+            transform: translate(-50%, -50%);
+        }
+
+        &:hover {
+            color: var(--color-primary);
+            background: var(--color-primary-bg);
+        }
+
+        /* O ícone já vira um "check"; a cor confirma sem depender só da forma */
+        &.copiado {
+            color: var(--color-success);
+        }
+    }
+
+    &__item-value {
+        display: inline-block;
+        text-wrap: pretty;
+        font-size: var(--text-base);
+        font-weight: 500;
+        color: var(--color-text);
+        transition: color var(--transition-fast);
+
+        &:hover {
+            color: var(--color-primary);
+        }
+    }
+
+    /* O alvo de toque cresce por um pseudo-elemento, não pela caixa do link.
+       Com min-height: 44px o link ficava 17px mais alto que a linha de texto e
+       essa folga aparecia entre o rótulo e o número — só no telefone, porque
+       só ele é link, o que desalinhava o par. Assim o alvo tem os 44px do
+       WCAG 2.5.5 e o layout continua do tamanho do texto. */
+    a.contato__item-value {
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset-inline: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 44px;
+        }
+    }
+
+    &__form-wrapper {
+        background: var(--color-bg-white);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: clamp(var(--space-4), 3vw, var(--space-8));
+        box-shadow: var(--shadow-md);
+    }
+
+    &__form-title {
+        font-family: var(--font-display);
+        font-size: clamp(var(--text-xl), 2.5vw, var(--text-2xl));
+        font-weight: 400;
+        color: var(--color-primary);
+        margin-bottom: var(--space-5);
+    }
+}

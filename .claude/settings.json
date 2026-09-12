@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run build:*)",
+      "Bash(npm test:*)",
+      "Bash(npm ci)",
+      "Bash(npm ls:*)",
+      "Bash(npx ng build:*)",
+      "Bash(npx ng generate:*)",
+      "Bash(npx ng version)",
+      "Bash(curl -s -o /dev/null -w:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Read(./src/**)",
+      "Read(./public/**)",
+      "Edit(./src/**)",
+      "Write(./src/**)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(rm -rf:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

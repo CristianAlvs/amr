@@ -1,0 +1,78 @@
+.footer {
+  background: var(--color-dark);
+  padding-block: var(--space-8);
+  text-align: center;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px; /* alvo de toque */
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-on-dark-muted);
+    transition: color var(--transition-fast), background var(--transition-fast);
+
+    &:hover {
+      color: var(--color-text-on-dark);
+      background: var(--color-dark-soft);
+    }
+
+    /* O anel global usa --color-primary, que dá só 2,4:1 sobre --color-dark e
+       reprova em 1.4.11 — e estes são os primeiros focáveis sobre fundo escuro. */
+    &:focus-visible {
+      color: var(--color-text-on-dark);
+      background: var(--color-dark-soft);
+      outline-color: var(--color-accent-soft);
+    }
+  }
+
+  /* .social__links não centra por conta própria. Enquanto as duas pílulas
+     cabem numa linha isso não aparece, porque o align-items: center do
+     __inner encolhe a caixa ao conteúdo. Quando elas quebram, a caixa passa a
+     ocupar a largura toda e as linhas encostam à esquerda. */
+  &__social {
+    justify-content: center;
+  }
+
+  /* A pílula global é branca com sombra — desenhada para a faixa clara da
+     seção de contato, onde estes botões viviam. Sobre o carvão do rodapé ela
+     vira um bloco branco gritante, então aqui ela se inverte: contorno na
+     borda escura, tinta clara, e o dourado só no hover. */
+  &__social .social__link {
+    background: transparent;
+    border-color: var(--color-border-dark);
+    box-shadow: none;
+    color: var(--color-text-on-dark-muted);
+
+    &:hover {
+      background: var(--color-dark-soft);
+      border-color: var(--color-accent-soft);
+      color: var(--color-text-on-dark);
+    }
+
+    &:focus-visible {
+      outline-color: var(--color-accent-soft);
+    }
+  }
+
+  &__copy {
+    font-size: var(--text-sm);
+    color: var(--color-text-on-dark-muted);
+  }
+}

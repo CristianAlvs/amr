@@ -1,0 +1,118 @@
+@use 'abstracts/mixins' as *;
+
+.hero {
+    position: relative;
+    /* A nav é o primeiro item em fluxo e o conteúdo se centra no que sobra, via
+       margin-block: auto. Com a nav dentro, a soma já passa de 550px e este piso
+       não encosta mais — o que é desejável: altura vinda só do conteúdo significa
+       que o recorte da foto (ancorado na base) depende apenas da LARGURA da
+       viewport, e o contraste fica previsível. */
+    min-height: clamp(380px, 52vh, 480px);
+    display: flex;
+    flex-direction: column;
+    /* clip e não hidden: hidden faria do hero um scroll container, e o foco nos
+       links da nav poderia rolá-lo internamente sem volta. */
+    overflow: clip;
+
+    /* Montanhas da identidade, servidas de public/.
+       Sem ampliação (100%) e centrado em 45%: a janela cai sobre a serra, com
+       um fio de céu em cima e um fio do morro de terra embaixo. Ancorado na
+       base, como era antes, o bloco enquadrava o morro e a serra sumia.
+       A foto é 3:2 (h/l = 0,664), então a 100% ela mede 0,664 da largura da
+       viewport — acima de 1024px isso cobre o hero com folga. Abaixo disso o
+       bloco fica estreito e alto e o recorte passa a ser dirigido pela altura,
+       no ramo de tablet. */
+    &__bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        @include fundo-montanhas;
+    }
+
+    /* O mixin resolve --bg-montanhas em tempo de uso, então basta
+       redefinir o token por breakpoint para trocar o arquivo servido. */
+    @media (min-width: 1600px) {
+        --bg-montanhas: url('/bg-montanhas-2400.jpg');
+    }
+
+    /* Abaixo de 1024px o bloco fica estreito e alto. Um tamanho dirigido pela
+       largura (125%) deixaria de cobrir a altura e abriria faixa vazia, então
+       aqui o recorte passa a ser dirigido pela altura. */
+    @include tablet {
+        /* A janela aqui cobre 2/3 da foto (contra ~40% no desktop), então 45%
+           já deixaria entrar morro demais — sobe para 25%. */
+        &__bg { @include fundo-montanhas($pos: center 25%, $tam: auto 150%); }
+    }
+
+    @include mobile {
+        --bg-montanhas: url('/bg-montanhas-960.jpg');
+    }
+
+    /* Filete dourado fechando o bloco — assinatura do manual */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 2px;
+        background: var(--color-accent-deep);
+        z-index: 3;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 760px;
+        margin-block: auto;
+        margin-inline: auto;
+        /* Assimétrico: sem a pílula do eyebrow o topo ficou com respiro demais
+           entre o logo e o título, então ele é curto. O rodapé é o dobro — é
+           ele que dá altura ao bloco e, com isso, mais foto enquadrada: a
+           janela cresce nas duas pontas e deixa entrar um fio a mais de morro
+           embaixo e de céu em cima. */
+        padding-block: clamp(var(--space-3), 2.5vw, var(--space-6))
+                       clamp(var(--space-12), 8vw, var(--space-24));
+    }
+
+    &__title {
+        font-family: var(--font-display);
+        /* Contínuo em toda a faixa. Com 7vw o teto era atingido já em 800px e
+           havia um salto de 6px ao cruzar o breakpoint mobile, que reclampeava. */
+        font-size: clamp(2rem, 5.5vw, var(--text-6xl));
+        /* Waylimo só tem peso regular — presença vem do tamanho, não do bold */
+        font-weight: 400;
+        line-height: 1.05;
+        color: var(--color-primary-dark);
+        margin-bottom: var(--space-5);
+
+        em {
+            display: block;
+            font-style: normal;
+            color: var(--color-primary);
+        }
+    }
+
+    &__description {
+        font-size: clamp(var(--text-base), 1.6vw, var(--text-lg));
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-6);
+        font-weight: 300;
+        line-height: 1.6;
+        text-wrap: pretty;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-3);
+        flex-wrap: wrap;
+    }
+
+    @include mobile {
+        &__buttons {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+}

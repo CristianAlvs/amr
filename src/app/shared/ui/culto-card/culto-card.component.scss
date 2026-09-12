@@ -1,0 +1,60 @@
+@use 'abstracts/mixins' as *;
+
+.culto-card {
+    background: var(--color-bg-white);
+    padding: var(--space-6) var(--space-5);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid transparent;
+    text-align: center;
+
+    @include card-hover(-8px);
+
+    &--featured {
+        border-top-color: var(--color-primary);
+        box-shadow: var(--shadow-md);
+    }
+
+    &__icon {
+        margin-bottom: var(--space-3);
+        color: var(--color-primary);
+        display: flex;
+        justify-content: center;
+    }
+
+    &__label {
+        @include label-uppercase;
+        color: var(--color-text-subtle);
+        margin-bottom: var(--space-2);
+    }
+
+    &__title {
+        font-family: var(--font-display);
+        font-size: var(--text-2xl);
+        font-weight: 400;
+        font-style: normal;
+        color: var(--color-primary);
+        margin-bottom: var(--space-3);
+        line-height: 1.1;
+    }
+
+    &__description {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.7;
+        margin-bottom: var(--space-6);
+        font-weight: 300;
+    }
+
+    &__schedule {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-primary);
+        padding-top: var(--space-4);
+        border-top: 1px solid var(--color-border);
+    }
+}

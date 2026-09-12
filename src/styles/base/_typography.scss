@@ -1,0 +1,56 @@
+@use '../abstracts/mixins' as *;
+
+.section {
+    padding-block: var(--section-py);
+
+    &__eyebrow {
+        @include label-uppercase;
+        display: inline-block;
+        color: var(--color-primary);
+        margin-bottom: var(--space-1);
+    }
+
+    &__title {
+        font-family: var(--font-display);
+        font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+        font-weight: 400;
+        line-height: 1.15;
+        color: var(--color-primary-dark);
+
+        /* Waylimo não tem itálico real — o destaque do manual é a cor dourada,
+           não a inclinação. Sintetizar oblíquo aqui deformaria a marca.
+           Usa o bronze (#98733D, ~4,6:1) e não o dourado puro (#CB912E, ~2,9:1),
+           que reprovaria no contraste mínimo. */
+        em {
+            font-style: normal;
+            color: var(--color-accent-deep);
+        }
+    }
+
+    &__subtitle {
+        font-size: var(--text-base);
+        color: var(--color-text-muted);
+        margin-top: var(--space-4);
+        max-width: 56ch;
+        font-weight: 300;
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: var(--section-header-mb);
+
+        .section__subtitle {
+            margin-inline: auto;
+        }
+    }
+
+    /* Filete dourado sob o título — recorrente no manual */
+    &__rule {
+        display: block;
+        width: 64px;
+        height: 4px;
+        margin: var(--space-5) auto 0;
+        background: var(--color-accent-deep);
+        border-radius: var(--radius-sm);
+    }
+}

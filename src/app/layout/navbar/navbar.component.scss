@@ -1,0 +1,84 @@
+@use 'abstracts/mixins' as *;
+
+/* A nav vive dentro do hero, sobre a foto: sem fundo, sem blur, sem sombra — o
+   véu do mixin fundo-montanhas já garante o contraste.
+   position/z-index são obrigatórios: .hero__bg é posicionado com z-index: 0. */
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding-block: var(--nav-py);
+
+  &__logo {
+    display: flex;
+    /* sem isto o stretch padrão do flex pode esticar a imagem (é elemento
+       substituído com height: auto) e achatar a marca */
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  /* O margin negativo recorta o alfa vazio do PNG — ver --nav-logo-trim-*.
+     É assimétrico porque a folga do arquivo também é (mais em cima). */
+  &__logo-image {
+    width: var(--nav-logo-w);
+    height: calc(var(--nav-logo-w) * var(--nav-logo-h));
+    opacity: var(--nav-logo-opacity);
+    margin-block: calc(var(--nav-logo-w) * var(--nav-logo-trim-top) * -1)
+                  calc(var(--nav-logo-w) * var(--nav-logo-trim-bottom) * -1);
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    margin-left: auto;
+  }
+
+  &__link {
+    display: inline-grid;
+    place-items: center;
+    min-height: 44px; /* alvo de toque */
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-base);
+    color: var(--color-accent-deep);
+    transition: transform var(--transition-base);
+
+    &::before {
+      content: attr(data-label);
+      grid-area: 1 / 1;
+      font-weight: 600;
+      visibility: hidden;
+    }
+
+    &:hover,
+    &:focus-visible {
+      transform: scale(1.08);
+
+      .nav__link-text { font-weight: 600; }
+    }
+  }
+
+  &__link-text {
+    grid-area: 1 / 1;
+  }
+
+  /* Sem hambúrguer: três links cabem em uma linha. Abaixo de 768px a faixa
+     empilha — logo em cima, links centralizados embaixo. */
+  @include mobile {
+    flex-direction: column;
+    gap: var(--space-2);
+
+    &__list {
+      margin-left: 0;
+      justify-content: center;
+    }
+  }
+}

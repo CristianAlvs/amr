@@ -1,0 +1,70 @@
+/* ============================================================
+   A MENSAGEM REVELADA — Stylesheet
+   Identidade: Waylimo (display) + Inter (corpo)
+   Paleta e aplicações conforme design/Breve-Apresentação.pdf
+   ============================================================
+*/
+
+// ---- Abstracts ----
+@use 'styles/abstracts/tokens';
+@use 'styles/abstracts/mixins';
+
+// ---- Base ----
+@use 'styles/base/fonts';
+@use 'styles/base/reset';
+@use 'styles/base/typography';
+
+// ---- Layout ----
+@use 'styles/layout/container';
+
+// ---- Components (globais) ----
+@use 'styles/components/buttons';
+@use 'styles/components/forms';
+@use 'styles/components/animations';
+
+// Conteúdo só para leitor de tela
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Pular para o conteúdo — primeiro foco da página
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 200;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-primary);
+  color: var(--color-bg-white);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: top var(--transition-fast);
+
+  &:focus {
+    top: var(--space-4);
+  }
+}
+
+@media print {
+  // O logo do hero fica; o que não serve no papel são os links
+  .skip-link, .nav__list, .footer__nav { display: none !important; }
+  body { background: #fff; color: #000; }
+  .hero { min-height: auto; }
+  .hero__bg { display: none; }
+  .hero__title, .section__title { color: #000; }
+
+  // O observer de scroll não roda na impressão — sem isto a página sai em branco
+  .animate-on-scroll, .animate-fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

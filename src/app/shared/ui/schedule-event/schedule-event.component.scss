@@ -1,0 +1,65 @@
+@use 'abstracts/mixins' as *;
+
+.schedule-day {
+    &__name {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: 400;
+        font-style: normal;
+        color: var(--color-primary);
+        padding-bottom: var(--space-3);
+        border-bottom: 2px solid var(--color-primary);
+        margin-bottom: var(--space-4);
+    }
+
+    &__events {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+}
+
+.schedule-event {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    border-left: 4px solid transparent;
+    transition: all var(--transition-fast);
+
+    &:hover {
+        border-left-color: var(--color-primary);
+        background: var(--color-primary-bg);
+    }
+
+    &__time {
+        flex-shrink: 0;
+        font-size: var(--text-sm);
+        font-weight: 700;
+        color: var(--color-primary);
+        min-width: 52px;
+        font-variant-numeric: tabular-nums;
+    }
+
+    &__info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        strong {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        span {
+            font-size: var(--text-xs);
+            color: var(--color-text-subtle);
+            font-weight: 300;
+        }
+    }
+}

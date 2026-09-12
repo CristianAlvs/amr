@@ -1,0 +1,21 @@
+/* Faixa alinhada ao sistema de seções: usa .section/--section-py e as classes
+   .section__title/.section__subtitle como as vizinhas. Antes tinha padding
+   próprio (48px contra os 72px das outras) e um h2 com preferido 5vw contra
+   4vw, o que quebrava a cadência vertical e a escala tipográfica da página. */
+.cta-section {
+    background-color: var(--color-primary-dark);
+    text-align: center;
+
+    .section__title {
+        color: var(--color-text-on-dark);
+
+        em { color: var(--color-accent-soft); }
+    }
+
+    .section__subtitle {
+        color: var(--color-text-on-dark-muted);
+        margin-inline: auto;
+        margin-bottom: var(--space-6);
+        max-width: 50ch;
+    }
+}

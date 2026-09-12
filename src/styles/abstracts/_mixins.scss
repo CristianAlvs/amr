@@ -1,0 +1,63 @@
+// Breakpoints
+$bp-tablet: 1024px;
+$bp-mobile: 768px;
+$bp-small:  480px;
+
+@mixin tablet { @media (max-width: $bp-tablet) { @content; } }
+@mixin mobile { @media (max-width: $bp-mobile) { @content; } }
+@mixin small  { @media (max-width: $bp-small)  { @content; } }
+
+// Card hover — elevação + borda dourada no topo (padrão de card do manual)
+@mixin card-hover($translate: -6px) {
+    transition: transform var(--transition-base), box-shadow var(--transition-base),
+                border-color var(--transition-base);
+
+    &:hover {
+        transform: translateY($translate);
+        box-shadow: var(--shadow-lg);
+        border-top-color: var(--color-accent);
+    }
+}
+
+// Rótulo em caixa alta espaçada — assinatura tipográfica do manual
+@mixin label-uppercase {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+}
+
+// Fundo de montanhas da marca.
+//
+// O véu é GRADUADO, não uniforme, e a razão é medida: o terço superior da foto
+// é céu (luminância ~210) e o inferior é rocha (~60). Um véu único ou lava as
+// montanhas em branco ou deixa o texto sem contraste. Aqui o topo recebe véu
+// fraco (a serra aparece) e a faixa central — onde o texto vive — recebe véu
+// forte o bastante para garantir AA.
+//
+// $pos/$tam recortam a imagem. A foto tem três faixas: céu/nuvens até ~25%,
+// a serra recortada de 25% a 64%, e daí para baixo o morro de terra marrom.
+// Ancorar na base enquadrava justamente a terra; 45% centra a janela na serra
+// e deixa só um fio de terra na borda inferior do bloco.
+// $centro é 0.80 e não 0.74 vem da era do recorte de base, sobre rocha escura
+// (luminância 61). Com o recorte na serra o fundo é mais claro, então o
+// contraste do texto só melhora — o risco agora é lavar a montanha, não perder
+// legibilidade.
+@mixin fundo-montanhas(
+    $topo: 0.50,
+    $centro: 0.80,
+    $base: 0.66,
+    $pos: center 45%,
+    $tam: 100%
+) {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, $topo) 0%,
+            rgba(255, 255, 255, $centro) 26%,
+            rgba(245, 246, 243, $centro) 82%,
+            rgba(255, 255, 255, $base) 100%
+        ),
+        var(--bg-montanhas) $pos / $tam no-repeat;
+}

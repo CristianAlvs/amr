@@ -1,0 +1,137 @@
+/* ============================================================
+   Design tokens — A Mensagem Revelada
+   Paleta e tipografia extraídas de design/Breve-Apresentação.pdf
+   ============================================================ */
+
+:root {
+  /* ---- Paleta oficial (8 cores do manual) ---- */
+  --brand-azul:          #155F82;  /* petróleo — cor de marca */
+  --brand-azul-nevoa:    #A8BDD7;  /* azul claro enevoado */
+  --brand-marinho:       #092648;  /* azul marinho */
+  --brand-carvao:        #0E1E2E;  /* quase preto azulado */
+  --brand-areia:         #D8DACD;  /* neutro claro esverdeado */
+  --brand-dourado:       #CB912E;  /* dourado */
+  --brand-dourado-claro: #C9A35C;
+  --brand-bronze:        #98733D;
+
+  /* ---- Papéis semânticos ---- */
+  --color-primary:       var(--brand-azul);
+  --color-primary-dark:  var(--brand-marinho);
+  --color-primary-light: #2C7FA6;
+  --color-primary-bg:    #EAF1F6;
+
+  --color-accent:        var(--brand-dourado);
+  --color-accent-soft:   var(--brand-dourado-claro);
+  --color-accent-deep:   var(--brand-bronze);
+
+  --color-bg:            #F5F6F3;
+  --color-bg-white:      #ffffff;
+  --color-surface:       #ffffff;
+  --color-surface-muted: var(--brand-areia);
+
+  --color-dark:          var(--brand-carvao);
+  --color-dark-soft:     #16283A;
+
+  /* Texto — todos validados em AA sobre --color-bg e --color-bg-white */
+  --color-text:          #1B2733;
+  --color-text-muted:    #4A5966;
+  --color-text-subtle:   #667586;  /* 4,9:1 sobre branco */
+
+  /* Texto sobre fundo escuro (rodapé, faixas) */
+  --color-text-on-dark:        #E8EDF2;
+  --color-text-on-dark-muted:  #A9B7C4;  /* 7,1:1 sobre --brand-carvao */
+
+  --color-border:        #DDE3E8;
+  --color-border-strong: #C2CCD6;
+  --color-border-dark:   #23384C;
+
+  --color-danger:        #B03636;  /* erros de formulário */
+
+  --color-success:       #166534;  /* sucesso do formulário — ~8,3:1 sobre --color-success-bg */
+  --color-success-bg:    #E6F4EA;  /* fundo claro para estado de sucesso */
+
+  /* ---- Tipografia ---- */
+  --font-display: 'Waylimo', 'Libre Baskerville', Georgia, serif;
+  --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.5rem;
+
+  --tracking-label: 0.18em;  /* caixa-alta espaçada do manual */
+  --tracking-wide:  0.06em;
+
+  /* ---- Espaçamento ---- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ---- Layout ---- */
+  --container-max: 1140px;
+  --container-pad: clamp(1rem, 3vw, 1.5rem);
+
+  /* Nav do hero. Não existe mais barra fixa — a faixa rola junto com a página,
+     então não há altura a reservar: a largura do logo e o respiro definem
+     sozinhos quanto o topo do hero ocupa. */
+  --nav-logo-w: clamp(56px, 5.5vw, 76px);
+  /* Altura como fração da largura. O natural do arquivo é 0,848 (696×590);
+     0,90 estreita a marca em ~6% para tirar o aspecto achatado do símbolo,
+     que é largo por causa do livro aberto. É deformação deliberada — subir
+     muito daqui começa a aparecer. */
+  --nav-logo-h: 0.90;
+  /* O PNG traz só o símbolo e sobra alfa vazio: 18,5% da altura em cima e 8,8%
+     embaixo. Os fatores abaixo já convertem isso para fração da LARGURA (via
+     --nav-logo-h), que é o que o calc do margin-block multiplica. Sem eles a
+     faixa ganha ~18px de nada. */
+  --nav-logo-trim-top: 0.167;
+  --nav-logo-trim-bottom: 0.079;
+  /* Assenta a marca na foto em vez de deixá-la recortada por cima. É
+     decorativa (alt=""), então não há mínimo de contraste a respeitar. */
+  --nav-logo-opacity: 0.85;
+  --nav-py: clamp(var(--space-3), 2vw, var(--space-5));
+
+  /* Ritmo vertical. O clamp anterior (3rem, 5vw, 4.5rem) só era fluido acima
+     de 960px — abaixo disso ficava travado no piso, justamente onde a tela é
+     mais escassa. Com 4vw a interpolação começa em ~500px de viewport. */
+  --section-py:        clamp(2rem, 4vw, 3.5rem);
+  --section-header-mb: clamp(1.5rem, 3vw, 2.5rem);
+
+  /* Vão entre colunas de um grid de seção. Unifica os 48px de Sobre e os 64px
+     de Contato, que faziam a mesma função com valores diferentes. */
+  --gap-col: clamp(1.75rem, 4vw, 3rem);
+
+  /* ---- Raio ---- */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   14px;
+  --radius-full: 9999px;
+
+  /* ---- Sombras ---- */
+  --shadow-sm: 0 2px 8px rgba(9, 38, 72, 0.06);
+  --shadow-md: 0 4px 20px rgba(9, 38, 72, 0.09);
+  --shadow-lg: 0 12px 40px rgba(9, 38, 72, 0.14);
+
+  /* ---- Transições ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* ---- Imagem de marca ---- */
+  --bg-montanhas: url('/bg-montanhas-1600.jpg');
+}

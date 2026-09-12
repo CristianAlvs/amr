@@ -1,0 +1,60 @@
+@use 'abstracts/mixins' as *;
+
+.pastor-card {
+    display: flex;
+    gap: var(--space-5);
+    padding: var(--space-6);
+    background: var(--color-bg-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid transparent;
+
+    @include card-hover(-4px);
+
+    @include mobile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    &--solo {
+        max-width: 680px;
+        width: 100%;
+    }
+
+    &__avatar {
+        flex-shrink: 0;
+        width: 72px;
+        height: 72px;
+        border-radius: var(--radius-full);
+        background: var(--color-primary-bg);
+        border: 2px solid var(--color-border-strong);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+    }
+
+    &__name {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: 400;
+        font-style: normal;
+        color: var(--color-primary);
+        margin-bottom: var(--space-2);
+    }
+
+    &__role {
+        display: block;
+        @include label-uppercase;
+        color: var(--color-text-subtle);
+        margin-bottom: var(--space-4);
+    }
+
+    &__bio {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.7;
+        font-weight: 300;
+    }
+}

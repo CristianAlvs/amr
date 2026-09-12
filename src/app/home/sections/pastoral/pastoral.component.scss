@@ -1,0 +1,21 @@
+@use 'abstracts/mixins' as *;
+
+.pastoral {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+    }
+
+    &__single {
+        display: flex;
+        justify-content: center;
+    }
+
+    @include mobile {
+        &__grid { grid-template-columns: 1fr; }
+    }
+}

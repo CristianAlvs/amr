@@ -1,0 +1,115 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    /* Padding horizontal fluido: fixo em 32px, o rótulo em caixa alta com
+       tracking 0.18em estourava a viewport em telas de 360px. */
+    padding: 0.875rem clamp(var(--space-4), 4vw, var(--space-8));
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    transition: background var(--transition-base), color var(--transition-base),
+                border-color var(--transition-base), transform var(--transition-base),
+                box-shadow var(--transition-base);
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    min-height: 44px; /* alvo de toque — WCAG 2.5.5 */
+
+    /* Só eleva onde existe ponteiro de verdade; no toque o estado ficaria
+       grudado depois do tap. */
+    @media (hover: hover) {
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+
+    &:focus-visible {
+        transform: translateY(-2px);
+    }
+
+    /* Azul de marca — ação principal */
+    &--primary {
+        background: var(--color-primary);
+        color: var(--color-bg-white);
+        box-shadow: var(--shadow-sm);
+
+        &:hover,
+        &:focus-visible {
+            background: var(--color-primary-dark);
+            box-shadow: var(--shadow-md);
+        }
+    }
+
+    /* Dourado do manual — usado com parcimônia, para o CTA de maior peso */
+    &--accent {
+        background: var(--color-accent-deep);
+        color: var(--color-bg-white);
+        box-shadow: var(--shadow-sm);
+
+        &:hover,
+        &:focus-visible {
+            background: var(--brand-dourado);
+            box-shadow: var(--shadow-md);
+        }
+    }
+
+    &--outline {
+        background: transparent;
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+
+        &:hover,
+        &:focus-visible {
+            background: var(--color-primary);
+            color: var(--color-bg-white);
+        }
+    }
+
+    /* Sobre fundo escuro ou fotográfico */
+    &--white {
+        background: var(--color-bg-white);
+        color: var(--color-primary-dark);
+        box-shadow: var(--shadow-md);
+
+        &:hover,
+        &:focus-visible {
+            background: var(--color-surface-muted);
+        }
+    }
+
+    &--ghost-light {
+        background: transparent;
+        color: var(--color-text-on-dark);
+        border-color: rgba(232, 237, 242, 0.5);
+
+        &:hover,
+        &:focus-visible {
+            background: var(--color-bg-white);
+            border-color: var(--color-bg-white);
+            color: var(--color-primary-dark);
+        }
+    }
+
+    &--large {
+        padding: var(--space-4) clamp(var(--space-5), 5vw, var(--space-10));
+        font-size: var(--text-sm);
+    }
+
+    &--full {
+        width: 100%;
+    }
+}
+
+/* Linha de botões que quebra sozinha em vez de empurrar a página */
+.btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+}

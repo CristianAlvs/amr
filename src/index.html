@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <title>A Mensagem Revelada</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cultos da Igreja Evangélica Tabernáculo da Fé, em Santo Amaro (SP), com o Pr. Waltair Borges Vitória. Domingo 8h, 16h30 e 18h · Quarta 19h30." />
+    <meta name="theme-color" content="#155F82" />
+    <link rel="canonical" href="https://amensagemrevelada.com.br/" />
+
+    <!-- Open Graph / WhatsApp -->
+    <meta property="og:title" content="A Mensagem Revelada" />
+    <meta property="og:description" content="Proclamando a Palavra de Deus com fidelidade e amor. Cultos em Santo Amaro (SP) e transmissões no YouTube." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://amensagemrevelada.com.br/" />
+    <meta property="og:site_name" content="A Mensagem Revelada" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image" content="https://amensagemrevelada.com.br/bg-montanhas-1600.jpg" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="1063" />
+    <meta property="og:image:alt" content="A Mensagem Revelada — Igreja Evangélica Tabernáculo da Fé" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link id="favicon" rel="icon" type="image/png" href="icon-dark.png">
+    <script>
+      const favicon = document.getElementById('favicon');
+      const dark = window.matchMedia('(prefers-color-scheme: dark)');
+      function update(e) { favicon.href = e.matches ? 'icon-light.png' : 'icon-dark.png'; }
+      update(dark);
+      dark.addEventListener('change', update);
+    </script>
+
+    <!-- Fontes auto-hospedadas (public/fonts) — sem dependência de terceiros -->
+    <link rel="preload" href="/fonts/waylimo-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Fundo do hero é o LCP da página -->
+    <link rel="preload" href="/bg-montanhas-1600.jpg" as="image" fetchpriority="high">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Church",
+      "@id": "https://amensagemrevelada.com.br/#igreja",
+      "name": "Igreja Evangélica Tabernáculo da Fé",
+      "alternateName": "A Mensagem Revelada",
+      "description": "Igreja evangélica em Santo Amaro, São Paulo, sob a liderança do Pr. Waltair Borges Vitória. Os cultos são transmitidos no canal A Mensagem Revelada, no YouTube.",
+      "url": "https://amensagemrevelada.com.br/",
+      "logo": "https://amensagemrevelada.com.br/logo-dark.png",
+      "image": "https://amensagemrevelada.com.br/bg-montanhas-1600.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Iguatinga, 171",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+      },
+      "telephone": "+55-11-99155-8182",
+      "founder": { "@type": "Person", "name": "Pr. Waltair Borges Vitória" },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "08:00", "name": "Culto de Companheirismo e Escola Dominical" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "16:30", "name": "Culto de Pregação — Tarde" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "18:00", "name": "Culto de Pregação — Noite" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "19:30", "name": "Culto de Oração" }
+      ],
+      "sameAs": [ "https://www.youtube.com/@amensagemrevelada" ]
+    }
+    </script>
+</head>
+<body>
+    <app-root></app-root>
+</body>
+</html>

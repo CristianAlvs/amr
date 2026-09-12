@@ -1,0 +1,142 @@
+@use 'abstracts/mixins' as *;
+
+/* Agenda e chamada do canal fundidas num bloco só: os cultos listados aqui SÃO
+   os cultos que o CTA convida a assistir, e separá-los custava uma seção
+   inteira de scroll (549px + 294px) e uma troca de fundo desnecessária.
+
+   Contrastes medidos sobre este marinho (#092648), que é o que obriga as
+   sobrescritas de cor abaixo:
+     --color-text-on-dark       12,90:1
+     --color-text-on-dark-muted  7,42:1
+     --color-accent-soft         6,42:1
+     --color-primary             2,16:1  <- reprova, é a cor padrão do eyebrow
+     --color-accent-deep         3,51:1  <- limítrofe, é o <em> padrão do título */
+.agenda {
+    background: var(--color-primary-dark);
+
+    /* O eyebrow global é --color-primary: 2,16:1 aqui, ilegível. */
+    .section__eyebrow { color: var(--brand-azul-nevoa); }
+
+    .section__title {
+        color: var(--color-text-on-dark);
+
+        /* O <em> global é --color-accent-deep (3,51:1). O soft dá 6,42:1. */
+        em { color: var(--color-accent-soft); }
+    }
+
+    /* Programação à esquerda, chamada à direita. Assimétrico de propósito:
+       a grade dos dias precisa de mais largura que o cartão de CTA. */
+    &__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+        gap: var(--gap-col);
+        align-items: start;
+    }
+
+    /* Uma linha por dia, empilhadas — não duas colunas lado a lado.
+       A separação entre os dias é só o respiro; sem filete horizontal. */
+    &__schedule {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-12);
+    }
+
+    &__cta {
+        padding: var(--space-6);
+        border: 1px solid color-mix(in srgb, var(--color-text-on-dark) 22%, transparent);
+        border-radius: var(--radius-lg);
+        background: color-mix(in srgb, var(--color-text-on-dark) 5%, transparent);
+    }
+
+    &__cta-titulo {
+        font-family: var(--font-display);
+        font-size: clamp(var(--text-xl), 2.2vw, var(--text-2xl));
+        font-weight: 400;
+        color: var(--color-text-on-dark);
+        margin-bottom: var(--space-3);
+    }
+
+    &__cta-texto {
+        font-size: var(--text-sm);
+        font-weight: 300;
+        line-height: 1.7;
+        color: var(--color-text-on-dark-muted);
+        margin-bottom: var(--space-5);
+    }
+
+    @include tablet {
+        &__grid { grid-template-columns: 1fr; }
+        &__cta { max-width: 420px; margin-inline: auto; }
+    }
+}
+
+/* Cada dia é uma LINHA: nome do dia, filete vertical, e os cultos daquele dia
+   à direita. Não são duas colunas de dias. */
+.schedule-day {
+    display: grid;
+    grid-template-columns: minmax(7rem, auto) 1fr;
+    gap: var(--space-5);
+    /* o nome do dia fica centrado na altura dos cultos dele, não colado no topo */
+    align-items: center;
+
+    &__name {
+        font-family: var(--font-display);
+        font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+        font-weight: 400;
+        color: var(--color-text-on-dark);
+    }
+
+    /* A "divisão" pedida: filete vertical entre o dia e os cultos dele.
+       O min-height garante um filete decente nos dias de um culto só — sem ele,
+       a quarta-feira ficava com um traço curtíssimo, do tamanho de uma linha. */
+    &__events {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        gap: var(--space-2) var(--space-5);
+        align-content: center;
+        min-height: 3.5rem;
+        padding-left: var(--space-5);
+        border-left: 1px solid color-mix(in srgb, var(--color-text-on-dark) 22%, transparent);
+    }
+
+    @include mobile {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+
+        &__events {
+            padding-left: 0;
+            border-left: none;
+            min-height: 0;
+        }
+
+        &__name {
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid color-mix(in srgb, var(--color-text-on-dark) 22%, transparent);
+        }
+    }
+}
+
+/* Informação simples, não controle: sem fundo, sem borda, sem raio e sem hover
+   — tudo isso fazia cada horário parecer um botão clicável.
+   Contraste sobre o marinho puro: horário 6,42:1 · nome do culto 12,90:1. */
+.schedule-event {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+
+    &__time {
+        flex-shrink: 0;
+        font-size: var(--text-sm);
+        font-weight: 700;
+        color: var(--color-accent-soft);
+        /* ch acompanha a fonte; px fixo apertava o nome do culto em telas estreitas */
+        min-width: 5ch;
+        font-variant-numeric: tabular-nums;
+    }
+
+    &__nome {
+        font-size: var(--text-sm);
+        font-weight: 400;
+        color: var(--color-text-on-dark);
+    }
+}
