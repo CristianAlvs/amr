@@ -75,23 +75,19 @@
         color: var(--color-text-subtle);
     }
 
-    &__item-row {
-        display: flex;
-        align-items: center;
-        gap: var(--space-2);
-    }
-
-    /* Desenha 28px para não competir com o dado que acompanha, mas o alvo de
-       toque tem os 44px do WCAG 2.5.5 — pelo pseudo-elemento, como no valor,
-       para não inflar a linha. */
+    /* Fica na linha do rótulo, não na do valor: ali ele não se mete entre o
+       dado e a margem, e o endereço — que quebra em duas linhas no mobile —
+       deixa de empurrar o botão para longe do próprio texto.
+       Desenha 28px para não engordar a linha de um rótulo de 12px, mas o alvo
+       de toque tem os 44px do WCAG 2.5.5, entregues pelo pseudo-elemento. */
     &__copiar {
         position: relative;
         flex-shrink: 0;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 34px;
-        height: 34px;
+        width: 28px;
+        height: 28px;
         border-radius: var(--radius-sm);
         color: var(--color-text-subtle);
         transition: color var(--transition-fast), background var(--transition-fast);
