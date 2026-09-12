@@ -2,5 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "angular",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/amr/browser"
+  "outputDirectory": "dist/amr/browser",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

@@ -86,6 +86,11 @@
   --container-max: 1140px;
   --container-pad: clamp(1rem, 3vw, 1.5rem);
 
+  /* Medida da coluna de texto corrido das páginas de leitura. Os 1140px do
+     container servem a grids de seção, mas são largos demais para parágrafo:
+     acima de ~75 caracteres o olho perde a linha ao voltar. */
+  --measure: 68ch;
+
   /* Nav do hero. Não existe mais barra fixa — a faixa rola junto com a página,
      então não há altura a reservar: a largura do logo e o respiro definem
      sozinhos quanto o topo do hero ocupa. */

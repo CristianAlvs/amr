@@ -1,49 +1,88 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { HomeComponent } from './home/home.component';
+import { AfterViewInit, Component, Injector, OnDestroy, afterNextRender, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+    ActivatedRoute,
+    Event,
+    NavigationCancel,
+    NavigationEnd,
+    NavigationError,
+    NavigationStart,
+    Router,
+    RouterOutlet
+} from '@angular/router';
+import { filter } from 'rxjs';
 import { FooterComponent } from './layout/footer/footer.component';
+import { ScrollRevealService } from './services/scroll-reveal.service';
+import { SeoService } from './services/seo.service';
 
 @Component({
     selector: 'app-root',
     imports: [
-        HomeComponent,
+        RouterOutlet,
         FooterComponent,
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
-    private scrollObserver!: IntersectionObserver;
-    private timers: ReturnType<typeof setTimeout>[] = [];
+    private readonly router = inject(Router);
+    private readonly route = inject(ActivatedRoute);
+    private readonly injector = inject(Injector);
+    private readonly reveal = inject(ScrollRevealService);
+    private readonly seo = inject(SeoService);
+
+    private saltoTimer?: ReturnType<typeof setTimeout>;
+
+    constructor() {
+        this.router.events.pipe(
+            filter((e): e is Event => e instanceof NavigationStart
+                || e instanceof NavigationEnd
+                || e instanceof NavigationCancel
+                || e instanceof NavigationError),
+            takeUntilDestroyed()
+        ).subscribe(evento => {
+            if (evento instanceof NavigationStart) {
+                // Só troca de página salta. Ir para uma âncora (#agenda) continua
+                // com a rolagem suave do reset.
+                if (!evento.url.includes('#')) {
+                    document.documentElement.classList.add('route-jump');
+                }
+                return;
+            }
+
+            // O scroll do router acontece depois do NavigationEnd; tirar a classe
+            // no mesmo tick devolveria o smooth antes do salto.
+            clearTimeout(this.saltoTimer);
+            this.saltoTimer = setTimeout(
+                () => document.documentElement.classList.remove('route-jump')
+            );
+
+            if (evento instanceof NavigationEnd) {
+                this.seo.apply(this.rotaAtiva().snapshot.data);
+
+                // O conteúdo da rota nova ainda não foi renderizado quando o
+                // NavigationEnd chega — sem esperar o render, o scan varreria o
+                // DOM da rota anterior e as seções nasceriam em opacity: 0.
+                this.reveal.clearPending();
+                afterNextRender(() => this.reveal.scan(), { injector: this.injector });
+            }
+        });
+    }
 
     ngAfterViewInit(): void {
-        // .animate-fade-up anima sozinho na carga, via animation-delay em CSS.
-        // Aqui só tratamos o que depende de entrar na viewport.
-        this.scrollObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    }
-                    const el = entry.target as HTMLElement;
-                    const delay = Number(el.dataset['delay']) || 0;
-                    if (delay > 0) {
-                        this.timers.push(setTimeout(() => el.classList.add('visible'), delay));
-                    } else {
-                        el.classList.add('visible');
-                    }
-                    this.scrollObserver.unobserve(el);
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        document.querySelectorAll('.animate-on-scroll')
-            .forEach(el => this.scrollObserver.observe(el));
+        this.reveal.scan();
     }
 
     ngOnDestroy(): void {
-        this.scrollObserver?.disconnect();
-        this.timers.forEach(clearTimeout);
-        this.timers = [];
+        clearTimeout(this.saltoTimer);
+    }
+
+    /** Desce até a rota folha, que é quem carrega o `data` de SEO. */
+    private rotaAtiva(): ActivatedRoute {
+        let rota = this.route;
+        while (rota.firstChild) {
+            rota = rota.firstChild;
+        }
+        return rota;
     }
 }

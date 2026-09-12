@@ -1,0 +1,24 @@
+<header class="page-header">
+  <div class="page-header__bg" aria-hidden="true"></div>
+
+  <nav class="page-header__nav container" aria-label="Navegação da página">
+    <a routerLink="/" class="page-header__logo" aria-label="A Mensagem Revelada — ir para o início">
+      <img src="/icon-dark.png" alt="" width="696" height="590" decoding="async" class="page-header__logo-image">
+    </a>
+
+    <a routerLink="/" class="page-header__voltar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+      </svg>
+      Voltar ao início
+    </a>
+  </nav>
+
+  <div class="page-header__content container">
+    <span class="section__eyebrow">{{ eyebrow() }}</span>
+    <h1 class="page-header__title">{{ titulo() }}</h1>
+    @if (subtitulo(); as texto) {
+      <p class="page-header__subtitle">{{ texto }}</p>
+    }
+  </div>
+</header>

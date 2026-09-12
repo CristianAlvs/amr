@@ -1,0 +1,128 @@
+@use 'abstracts/mixins' as *;
+
+.page-header {
+    position: relative;
+    overflow: clip;
+    padding-bottom: var(--section-py);
+
+    /* O véu do mixin tem paradas em % da ALTURA do bloco, e esta faixa é bem
+       mais baixa que o hero — os defaults (0.50/0.80/0.66) deixariam o
+       subtítulo e o link de voltar sobre rocha. Daí o véu mais forte nas três
+       paradas. Medido: h1 6,1:1, subtítulo 5,4:1, link de voltar 5,1:1.
+
+       $tam: cover em vez do 100% do hero porque aqui o bloco é largo e baixo;
+       com 100% a foto deixaria de cobrir a altura em telas estreitas. Com cover
+       não é preciso override por breakpoint. */
+    &__bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        @include fundo-montanhas(0.72, 0.88, 0.80, center 40%, cover);
+    }
+
+    @media (min-width: 1600px) {
+        --bg-montanhas: url('/bg-montanhas-2400.jpg');
+    }
+
+    @include mobile {
+        --bg-montanhas: url('/bg-montanhas-960.jpg');
+    }
+
+    /* Mesmo filete dourado que fecha o hero */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 2px;
+        background: var(--color-accent-deep);
+        z-index: 3;
+    }
+
+    &__nav {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        padding-block: var(--nav-py);
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    /* Margens negativas recortam o alfa vazio do PNG — ver --nav-logo-trim-* */
+    &__logo-image {
+        width: var(--nav-logo-w);
+        height: calc(var(--nav-logo-w) * var(--nav-logo-h));
+        opacity: var(--nav-logo-opacity);
+        margin-block: calc(var(--nav-logo-w) * var(--nav-logo-trim-top) * -1)
+                      calc(var(--nav-logo-w) * var(--nav-logo-trim-bottom) * -1);
+    }
+
+    &__voltar {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        margin-left: auto;
+        min-height: 44px; /* alvo de toque */
+        padding: var(--space-2) var(--space-4);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        /* Não é --color-accent-deep como a nav do hero: medido sobre esta faixa,
+           o bronze dá 3,9–4,3:1 e reprova em 1.4.3. Ele não alcança 4,5:1 nem
+           contra branco puro (4,32:1), então não era questão de reforçar o véu.
+           O azul de marca mede 6,1:1 aqui. */
+        color: var(--color-primary);
+        transition: transform var(--transition-base);
+
+        &:hover,
+        &:focus-visible {
+            transform: translateX(-2px);
+        }
+    }
+
+    /* O elemento também é .container, então carrega --container-pad. A medida
+       precisa somar esse padding para que o título fique na mesma vertical do
+       texto do artigo, que é --measure puro dentro de outro .container. */
+    &__content {
+        position: relative;
+        z-index: 2;
+        max-width: calc(var(--measure) + var(--container-pad) * 2);
+        margin-inline: auto;
+        padding-top: var(--space-8);
+    }
+
+    &__title {
+        font-family: var(--font-display);
+        /* Waylimo só tem peso 400 — presença vem do tamanho */
+        font-weight: 400;
+        font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+        line-height: 1.1;
+        color: var(--color-primary-dark);
+        margin-top: var(--space-2);
+        text-wrap: balance;
+    }
+
+    &__subtitle {
+        margin-top: var(--space-4);
+        font-size: var(--text-base);
+        font-weight: 300;
+        line-height: 1.7;
+        color: var(--color-text-muted);
+        text-wrap: pretty;
+    }
+
+    @include mobile {
+        &__nav {
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        &__voltar {
+            margin-left: 0;
+        }
+    }
+}

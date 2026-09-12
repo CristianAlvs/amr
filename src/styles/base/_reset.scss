@@ -11,6 +11,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Troca de rota é um salto, não uma rolagem. O scrollPositionRestoration do
+   router chama window.scrollTo(0, 0), que herda o smooth acima e animaria a
+   página inteira — sair do rodapé da home para um artigo viraria uma rolagem
+   longa antes de o artigo aparecer. A classe é posta e retirada pelo
+   AppComponent; navegação por âncora (#agenda) continua suave. */
+html.route-jump { scroll-behavior: auto; }
+
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
