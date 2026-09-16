@@ -41,6 +41,14 @@
   --color-text-on-dark:        #E8EDF2;
   --color-text-on-dark-muted:  #A9B7C4;  /* 7,1:1 sobre --brand-carvao */
 
+  /* Fundo da passagem-chave das páginas de leitura — a única primitiva de leitura
+     que tem fundo, e só funciona enquanto for rara. Areia da paleta a 40% sobre o
+     branco (#EFF0EB): quente, para conversar com o filete dourado, e longe do azul
+     que as caixas antigas usavam, que leria como volta atrás. Vai como color-mix e
+     não como hex solto para a origem ficar legível — mesmo recurso que _forms.scss
+     usa no fundo de erro. Texto marinho sobre ele: 13,3:1. */
+  --color-quote-bg:      color-mix(in srgb, var(--brand-areia) 40%, var(--color-bg-white));
+
   --color-border:        #DDE3E8;
   --color-border-strong: #C2CCD6;
   --color-border-dark:   #23384C;

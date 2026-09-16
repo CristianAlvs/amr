@@ -108,6 +108,23 @@ leitura nova não ganha `background`, `border-radius` nem `box-shadow`. O único
 `.artigo__citacao--chave`, **uma por seção no máximo** — e só para Escritura: dar a ela uma frase
 que não é versículo faz uma paráfrase humana parecer texto bíblico.
 
+Ela é **Inter**, como a citação base. Já foi Waylimo, sob o argumento de que a passagem-chave
+seria curta — as sete que a usam têm de 14 a 42 palavras e chegam a seis linhas, e a display
+nesse comprimento fica ilegível. O destaque vem do filete dourado curto, do corpo maior, do
+marinho cheio contra o cinza da citação base — e da faixa tingida em `--color-quote-bg`.
+
+**Ela é a única primitiva de leitura com fundo**, e é a única exceção à regra acima. Só funciona
+enquanto for rara: **uma por seção, sete no site**. Fundo em toda citação é literalmente o estado
+de onde esta reforma partiu — na seção da Deidade seriam oito blocos tingidos seguidos. Se um dia
+parecer que "essa citação também merece", a resposta é promover uma e rebaixar a outra, não
+tingir as duas.
+
+A faixa sangra para fora da coluna por `calc(var(--container-pad) * -1)` e devolve o texto ao
+lugar com o mesmo valor de padding — assim a primeira letra continua alinhada com a prosa. No
+desktop essa sangria cabe dentro do `gap` de `--space-8` que separa a calha da navegação da
+coluna de texto, com 8px de sobra: é a folga mais apertada do projeto. **Mexeu no `gap` do
+`.artigo-layout`? Confira se a faixa não encosta na `app-artigo-nav` sticky.**
+
 `.artigo-layout` é o grid `1fr --measure 1fr`: a coluna de texto fica exatamente onde ficaria se
 estivesse sozinha e centrada — o que alinha o `h1` da faixa de cabeçalho ao corpo do artigo —, e
 a navegação lateral ocupa a calha esquerda. Essa calha só passa de ~190px a partir de 1188px de
@@ -157,7 +174,18 @@ acende na seguinte.
   - `--font-display` → **Waylimo**. Display geométrica, **só peso 400, sem bold e sem itálico
     reais**. Nunca aplique `font-weight: 700` ou `font-style: italic` sobre ela — o navegador
     sintetiza e deforma a marca. Presença vem do `font-size`.
-  - `--font-body` → **Inter** (300 / 400 / 600 / 700).
+
+    **É fonte de título, e só.** `h1`, título de seção, título de bloco do artigo e os
+    títulos curtos de card. Nunca em parágrafo, citação, legenda ou rótulo: acima de duas
+    linhas uma display geométrica deixa de ser legível, e foi exatamente o que aconteceu com
+    a citação-chave das páginas de leitura, que chegava a seis linhas em Waylimo de 24px.
+    Precisa destacar um trecho de texto corrido? Escala, peso, cor e filete — a família
+    continua sendo a Inter. Regra prática: se passa de oito palavras, não é título.
+  - `--font-body` → **Inter** (300 / 400 / **500** / 600 / 700). O 500 existe por causa
+    das citações bíblicas: elas precisavam de um passo acima da prosa sem chegar ao 600,
+    que é o peso do `<strong>` e dos `<h3>` e num versículo de cinco linhas vira um bloco
+    escuro. **Só use um peso que tenha arquivo em `public/fonts/`** — pedir um que não
+    existe não dá erro, o navegador só cai no peso vizinho e a regra não faz nada.
 - **Destaque em título** (`<em>` dentro de `.section__title`) é **cor dourada**, não itálico.
 - **Fundo de montanhas** da marca: `@include fundo-montanhas($topo, $centro, $base, $pos, $tam)`.
   Servido de `public/` em três larguras (960 / 1600 / 2400). O véu é **graduado**: fraco no topo

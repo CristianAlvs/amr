@@ -53,8 +53,10 @@
 
         &-title {
             font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: var(--text-lg);
+            /* Waylimo só tem o arquivo de peso 400; 600 aqui virava um falso
+               bold sintetizado pelo navegador, que deforma a marca. */
+            font-weight: 400;
             color: var(--color-primary);
             padding-bottom: var(--space-2);
             border-bottom: 2px solid var(--color-primary);
@@ -163,7 +165,8 @@
     &__title {
         font-family: var(--font-display);
         font-size: var(--text-base);
-        font-weight: 700;
+        /* Waylimo não tem bold real — ver .canal__item-title acima. */
+        font-weight: 400;
         color: var(--color-text);
         line-height: 1.4;
         display: -webkit-box;

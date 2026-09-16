@@ -91,4 +91,16 @@
 
   // O ponto do marco depende de .visible, que o observer não chega a aplicar
   .artigo__marco::before { background: #000; border-color: #000; }
+
+  // O navegador descarta cor de fundo ao imprimir, e com ela iria embora a única
+  // marca que separa a passagem-chave da citação comum. Troca por um filete, que
+  // existe em tinta. O ::before dourado também é background, então sai junto.
+  .artigo__citacao--chave {
+    background: none;
+    margin-inline: 0;
+    padding-inline: var(--space-6);
+    padding-block: 0;
+    border-inline-start: 3px solid #000;
+  }
+  .artigo__citacao--chave::before { display: none; }
 }

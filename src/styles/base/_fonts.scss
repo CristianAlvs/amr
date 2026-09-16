@@ -1,6 +1,16 @@
 /* Fontes auto-hospedadas — subset latino, servidas de public/fonts/
    Waylimo: display, só peso regular (sem bold nem itálico reais).
-   Inter:   corpo, 300/400/600/700. */
+   Inter:   corpo, 300/400/500/600/700.
+
+   O 500 entrou por causa das citações bíblicas das páginas de leitura, que
+   precisavam de um passo acima da prosa sem chegar ao 600 — que é o peso do
+   <strong> e dos <h3>, e num versículo de cinco linhas vira um bloco escuro.
+   Escrever `font-weight: 500` sem o arquivo não resolveria: sem ele o navegador
+   cai para o 400 e nada muda.
+
+   Só o waylimo-400 e o inter-400 têm preload no index.html; o 500 fica de fora
+   de propósito, porque só aparece em rota lazy e abaixo da dobra, e competiria
+   com os arquivos do LCP. */
 
 @font-face {
   font-family: 'Waylimo';
@@ -22,6 +32,14 @@
   font-family: 'Inter';
   src: url('/fonts/inter-400.woff2') format('woff2');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-500.woff2') format('woff2');
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }

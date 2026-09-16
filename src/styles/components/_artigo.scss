@@ -110,7 +110,11 @@
             /* Waylimo só tem peso 400 — presença vem do tamanho, não de bold */
             font-weight: 400;
             font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl));
-            line-height: 1.2;
+            /* Folga maior que a dos outros títulos: quatro dos treze títulos
+               destas páginas têm oito palavras e quebram em duas linhas nesta
+               escala, onde a display geométrica precisa de respiro. Os títulos
+               de uma linha não perdem nada com isso. */
+            line-height: 1.28;
             color: var(--color-primary-dark);
             margin-bottom: var(--space-5);
         }
@@ -141,7 +145,11 @@
            cansa nesse comprimento. */
         p {
             font-size: var(--text-lg);
-            font-weight: 400;
+            /* 500, não 400: sem fundo nem filete grosso, a citação precisava de
+               densidade para não se dissolver na prosa em volta. O 600 seria o
+               peso do <strong> e dos <h3> — num versículo de cinco linhas vira
+               um bloco escuro. Foi por isto que o inter-500 entrou. */
+            font-weight: 500;
             line-height: 1.7;
             color: var(--color-text);
             text-wrap: pretty;
@@ -155,35 +163,80 @@
     /* A passagem-chave da seção — uma, no máximo. É o único destaque forte que
        sobrou, e ele só funciona enquanto for raro.
 
-       Aqui Waylimo cabe: a regra de que a display cansa vale para as passagens
-       longas, que ficam na variante base. O filete dourado curto é o mesmo
-       gesto de .section__rule e da borda do page-header. */
+       Corpo, como a citação base — e pelo mesmo motivo. Esta variante já esteve
+       em Waylimo, sob o argumento de que a passagem-chave seria curta; não é. As
+       sete passagens que a usam têm de 14 a 42 palavras e chegam a seis linhas,
+       e a display geométrica nesse comprimento deixa de ser legível. Foi o que o
+       comentário logo acima já dizia.
+
+       O destaque vem do filete dourado curto (o mesmo gesto de .section__rule e
+       da borda do page-header), do corpo maior, do marinho cheio contra o cinza
+       da citação base — e da faixa tingida.
+
+       É a ÚNICA primitiva de leitura com fundo, e ela só funciona enquanto for
+       rara: uma por seção, sete no site. Fundo em toda citação é literalmente o
+       estado de onde esta reforma partiu — na seção da Deidade seriam oito
+       blocos tingidos seguidos, que é o que dava o aspecto de página gerada em
+       série.
+
+       A margem negativa tira a faixa para fora da coluna e o padding devolve o
+       texto ao lugar, então a primeira letra continua alinhada com a prosa
+       acima: faixa de livro, não cartão. A sangria de --container-pad (16-24px)
+       é segura em toda largura — no celular .artigo já ocupa a coluna inteira e
+       -(pad) encosta exatamente na borda da viewport; no desktop ela cabe dentro
+       do gap de --space-8 (32px) que separa a calha da navegação da coluna de
+       texto, com 8px de sobra. É a folga mais apertada do desenho: mexeu no gap
+       do .artigo-layout, confira se a faixa não encosta na app-artigo-nav. */
     &__citacao--chave {
         margin-block: var(--space-12);
-        padding-inline-start: 0;
+        /* O respiro externo (margin-block) fica: é ele que mantém a faixa rara.
+           O interno encolhe junto com a entrelinha, senão o bloco fica com muito
+           ar em volta de um texto que ficou compacto. */
+        padding-block: var(--space-6);
+        padding-inline: var(--container-pad);
+        margin-inline: calc(var(--container-pad) * -1);
         border-inline-start: none;
+        background: var(--color-quote-bg);
+        /* --radius-sm, e não o --radius-md das caixas antigas: 4px arredonda o
+           suficiente para tirar a dureza do canto vivo sem devolver a silhueta
+           de cartão, que era metade do que dava o aspecto genérico. */
+        border-radius: var(--radius-sm);
 
         &::before {
             content: '';
             display: block;
             width: var(--space-16);
             height: 2px;
-            margin-bottom: var(--space-5);
+            margin-bottom: var(--space-4);
             background: var(--color-accent-deep);
         }
 
         p {
-            font-family: var(--font-display);
-            font-weight: 400;
-            font-size: clamp(var(--text-xl), 2.6vw, var(--text-2xl));
-            line-height: 1.35;
+            font-weight: 500;
+            /* Tamanho fixo, e igual ao da citação base. Era clamp(18, 2.2vw, 20):
+               com a faixa tingida carregando o sinal de "esta é a passagem-chave",
+               a tipografia não precisa mais crescer para se distinguir, e o bloco
+               fica mais compacto. */
+            font-size: var(--text-lg);
+            /* 1.5. O 1.7 da citação base serve a texto sem fundo, que precisa de
+               ar para não parecer um parágrafo qualquer; dentro da faixa o
+               contorno já separa, e o mesmo ar deixa o bloco esparramado. Não
+               confundir com o 1.35 que havia aqui na época da Waylimo — aquilo
+               era entrelinha de título aplicada a cinco linhas de corpo. */
+            line-height: 1.5;
             color: var(--color-primary-dark);
-            text-wrap: balance;
+            /* pretty, não balance: balance serve a título de poucas linhas. */
+            text-wrap: pretty;
         }
 
-        .artigo__referencia {
-            color: var(--color-accent-deep);
-        }
+        /* A referência herda o azul da .artigo__referencia base, de propósito.
+           Já foi bronze aqui; sobre branco o bronze está em 4,33:1, abaixo do
+           mínimo AA para texto pequeno, e sobre a areia cai para 3,78:1 — e o
+           rótulo é label-uppercase de 12px, que não se qualifica como texto
+           grande. O azul dá 6,1:1 sobre a faixa.
+
+           O filete do ::before continua bronze: é objeto gráfico, não texto, e
+           o critério ali é 3:1. */
     }
 
     &__referencia {

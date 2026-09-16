@@ -100,7 +100,9 @@
         /* Waylimo só tem peso 400 — presença vem do tamanho */
         font-weight: 400;
         font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
-        line-height: 1.1;
+        /* "William Marrion Branham" quebra abaixo de ~600px, e é aí que a
+           entrelinha curta demais aperta a display. */
+        line-height: 1.15;
         color: var(--color-primary-dark);
         margin-top: var(--space-2);
         text-wrap: balance;

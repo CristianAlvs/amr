@@ -14,7 +14,9 @@
         font-family: var(--font-display);
         font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
         font-weight: 400;
-        line-height: 1.15;
+        /* Respiro para quando o título quebra: "Quem somos e no que cremos"
+           vira duas linhas no celular, e a display pede folga aí. */
+        line-height: 1.2;
         color: var(--color-primary-dark);
 
         /* Waylimo não tem itálico real — o destaque do manual é a cor dourada,

@@ -7,7 +7,10 @@
     h2 {
         font-family: var(--font-display);
         font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
-        font-weight: 700;
+        /* Waylimo só tem o arquivo de peso 400; 700 aqui virava um falso bold
+           sintetizado pelo navegador, que deforma a marca. Presença vem do
+           tamanho. */
+        font-weight: 400;
         color: #fff;
         margin-bottom: var(--space-4);
     }
