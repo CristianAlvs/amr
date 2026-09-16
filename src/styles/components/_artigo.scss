@@ -7,6 +7,11 @@
    Vive aqui, no global, e não no SCSS de cada página: as duas usam exatamente
    o mesmo estilo de leitura, e o budget de anyComponentStyle (4 kB) seria
    gasto duas vezes pelo mesmo CSS.
+
+   Este arquivo tem dois irmãos, separados por assunto e não por budget (como
+   global, o CSS entra no bundle initial, cujo limite é outro):
+     _artigo-figura.scss   as figuras e as molduras ainda vazias
+     _artigo-leitura.scss  as primitivas de leitura em camadas e a linha do tempo
    ============================================================ */
 
 /* Calha da navegação + coluna de texto.
@@ -15,9 +20,30 @@
    exatamente onde ficaria se estivesse sozinha e centrada, o que mantém o
    título da faixa de cabeçalho (que também é --measure centrado) na mesma
    vertical. A navegação ocupa a calha esquerda; a direita fica vazia e serve
-   de respiro. Abaixo de 1200px a calha não tem largura útil, então volta tudo
-   a uma coluna e a navegação vira um bloco acima do texto (é a ordem do DOM). */
+   de respiro — e é dela que as figuras marginais se servem. Abaixo de 1200px
+   a calha não tem largura útil, então volta tudo a uma coluna e a navegação
+   vira um bloco acima do texto (é a ordem do DOM). */
 .artigo-layout {
+    /* A largura de um `1fr` deste grid, resolvida em CSS.
+
+       Não é um número fixo de propósito: --measure é 68ch, e o ch depende de a
+       Inter já ter carregado. Com a fonte de fallback a medida muda, e qualquer
+       sangria calculada em pixel passaria a vazar. Assim a conta se corrige
+       sozinha. No desktop dá 190px — o mesmo valor que o comentário de
+       _mixins.scss cita para justificar o breakpoint de 1200px.
+
+       max() protege o caso em que a medida ficar larga demais e a conta der
+       negativo: calha zero é degradação aceitável, margem negativa invertida
+       não é. */
+    --artigo-calha: max(0px, calc(
+        (var(--container-max) - var(--container-pad) * 2
+         - var(--space-8) * 2 - var(--measure)) / 2
+    ));
+
+    /* Espessura do fio da citação. Exposta para poder ir a 0 sem tocar na
+       regra: nessa altura a citação fica marcada só pela tipografia. */
+    --artigo-filete: 1px;
+
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-8);
@@ -32,10 +58,13 @@
     }
 }
 
-.artigo {
-    max-width: var(--measure);
-    margin-inline: auto;
-
+/* :where() zera a especificidade do .artigo, então a prosa base cai para
+   (0,0,1) e qualquer primitiva com classe ganha dela sem !important e sem
+   qualificar por elemento. É o que permite .artigo__lede e .artigo__importa
+   serem <p> de verdade: sem isto elas seriam (0,1,0) contra os (0,1,1) de
+   `.artigo p` e não teriam efeito visível nenhum.
+   .artigo__citacao p continua em (0,1,1) e continua ganhando. */
+:where(.artigo) {
     /* Parágrafo de leitura. line-height maior que o do resto do site: aqui o
        leitor encara blocos longos, não três linhas de card. */
     p {
@@ -53,18 +82,26 @@
         color: var(--color-text);
         font-weight: 600;
     }
+}
+
+.artigo {
+    max-width: var(--measure);
+    margin-inline: auto;
 
     /* Uma seção do artigo. O scroll-margin-top é o que impede o h2 de encostar
        na borda superior da janela quando a navegação lateral rola até aqui;
        precisa cobrir a LINHA_DE_LEITURA do ArtigoNavComponent, senão a seção
-       para acima da linha e o destaque acende na seção seguinte. */
+       para acima da linha e o destaque acende na seguinte. */
     &__bloco {
         margin-top: var(--space-16);
         scroll-margin-top: var(--space-16);
 
         /* No desktop a navegação sai de cima do texto e o primeiro bloco passa
-           a encostar no topo da coluna. */
-        &:first-child {
+           a encostar no topo da coluna. O :first-child não basta desde que o
+           resumo passou a abrir a página: com ele no meio, o primeiro bloco é o
+           segundo filho e recuperaria a margem. */
+        &:first-child,
+        .artigo__resumo + & {
             margin-top: 0;
         }
 
@@ -87,28 +124,65 @@
         }
     }
 
-    /* Citação bíblica: fundo tingido e filete dourado, como o bloco de citação
-       que a seção Sobre usava. */
+    /* Citação bíblica.
+
+       Sem fundo, sem raio, sem sombra — como em livro impresso. A caixa tingida
+       que havia aqui era o mesmo carimbo repetido trinta vezes nas duas páginas,
+       e com ele nenhuma passagem era mais importante que outra. O que marca a
+       citação agora é medida e peso: --text-lg / 400 / --color-text contra a
+       prosa em --text-base / 300 / --color-text-muted, mais o recuo e o fio. */
     &__citacao {
         margin-block: var(--space-8);
-        padding: var(--space-6) var(--space-8);
-        background: var(--color-primary-bg);
-        border-left: 4px solid var(--color-accent-deep);
-        border-radius: var(--radius-md);
+        padding-inline-start: var(--space-6);
+        border-inline-start: var(--artigo-filete, 1px) solid var(--color-border-strong);
 
         /* Corpo, não display. A citação da seção Sobre usa Waylimo porque tem
            uma linha; aqui há passagens de seis linhas, e uma display geométrica
-           cansa nesse comprimento. A distinção vem do fundo, do filete dourado,
-           do peso e da cor — não da família. */
+           cansa nesse comprimento. */
         p {
             font-size: var(--text-lg);
             font-weight: 400;
             line-height: 1.7;
             color: var(--color-text);
+            text-wrap: pretty;
         }
 
         @include mobile {
-            padding: var(--space-5) var(--space-6);
+            padding-inline-start: var(--space-4);
+        }
+    }
+
+    /* A passagem-chave da seção — uma, no máximo. É o único destaque forte que
+       sobrou, e ele só funciona enquanto for raro.
+
+       Aqui Waylimo cabe: a regra de que a display cansa vale para as passagens
+       longas, que ficam na variante base. O filete dourado curto é o mesmo
+       gesto de .section__rule e da borda do page-header. */
+    &__citacao--chave {
+        margin-block: var(--space-12);
+        padding-inline-start: 0;
+        border-inline-start: none;
+
+        &::before {
+            content: '';
+            display: block;
+            width: var(--space-16);
+            height: 2px;
+            margin-bottom: var(--space-5);
+            background: var(--color-accent-deep);
+        }
+
+        p {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(var(--text-xl), 2.6vw, var(--text-2xl));
+            line-height: 1.35;
+            color: var(--color-primary-dark);
+            text-wrap: balance;
+        }
+
+        .artigo__referencia {
+            color: var(--color-accent-deep);
         }
     }
 
@@ -124,33 +198,59 @@
        citação uma tabela pediria scroll horizontal no celular. O auto-fit
        empilha sozinho, sem breakpoint novo. */
     &__paralelos {
-        margin-top: var(--space-8);
+        margin-top: var(--space-10);
         display: flex;
         flex-direction: column;
-        gap: var(--space-6);
+        gap: var(--space-10);
         list-style: none;
+        counter-reset: par;
     }
 
+    /* Ledger, não caixa: eram doze retângulos brancos idênticos com borda e
+       raio, e doze repetições do mesmo molde é exatamente o que dava à página o
+       aspecto de gerada em série.
+
+       O fio ficou horizontal, no topo de cada lado. Lado a lado os dois formam
+       uma linha de razão contínua; empilhados, cada bloco ganha o seu próprio
+       fio e continua lendo como ledger. Nenhuma borda vertical, nenhum @include,
+       nenhum breakpoint novo. */
     &__par {
+        counter-increment: par;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: var(--space-4);
-        padding: var(--space-5);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-md);
-        background: var(--color-bg-white);
+        gap: var(--space-4) var(--space-8);
+
+        /* O numeral do par entra como item da própria grade ocupando a linha
+           inteira — sem position: absolute e sem depender de calha. */
+        &::before {
+            content: counter(par, decimal-leading-zero);
+            grid-column: 1 / -1;
+            @include label-uppercase;
+            color: var(--color-text-subtle);
+        }
     }
 
     &__par-lado {
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--color-border-strong);
+
         dt {
             @include label-uppercase;
             color: var(--color-accent-deep);
-            margin-bottom: var(--space-2);
+            margin-bottom: var(--space-3);
+        }
+
+        dd + dd {
+            margin-top: var(--space-4);
         }
 
         dd p {
             font-size: var(--text-sm);
             line-height: 1.7;
+        }
+
+        .artigo__referencia {
+            margin-top: var(--space-2);
         }
     }
 

@@ -1,0 +1,250 @@
+@use '../abstracts/mixins' as *;
+
+/* ============================================================
+   Artigo — leitura em camadas
+   Irmão de _artigo.scss; separado por assunto, não por budget.
+
+   Brevidade Inteligente aplicada sem cortar uma palavra do texto doutrinário:
+   em vez de encurtar, a página passa a ter níveis. Quem quer o essencial lê o
+   resumo, o lede de cada seção, o "por que isso importa" e os pontos; quem quer
+   tudo abre "Vá mais fundo" e encontra a prosa integral, como sempre esteve.
+
+   Nenhuma primitiva daqui pode ganhar fundo, raio ou sombra. O problema que
+   elas vieram resolver era justamente o de tudo virar caixa; resolvê-lo com
+   mais caixas seria trocar um carimbo por outro. O repertório é fio, recuo,
+   escala, peso e cor.
+
+   Todas dependem do :where(.artigo) de _artigo.scss: sem ele, `.artigo p`
+   (0,1,1) atropela .artigo__lede e .artigo__importa (0,1,0), e elas não têm
+   efeito visível nenhum.
+   ============================================================ */
+
+.artigo {
+
+    /* "O essencial" — abre a página, antes do primeiro bloco.
+       Um único fio inferior. Quatro bordas fariam um card. */
+    &__resumo {
+        margin-bottom: var(--space-12);
+        padding-bottom: var(--space-8);
+        border-bottom: 1px solid var(--color-border);
+
+        &-titulo {
+            @include label-uppercase;
+            color: var(--color-accent-deep);
+            margin-bottom: var(--space-4);
+        }
+
+        /* Tempo de leitura e afins: a linha que deixa o leitor decidir se entra
+           agora ou depois. */
+        &-meta {
+            margin-top: var(--space-5);
+            font-size: var(--text-sm);
+            font-weight: 400;
+            color: var(--color-text-subtle);
+        }
+    }
+
+    /* A frase-músculo, logo abaixo do h2. Uma só por seção: é ela que diz do
+       que a seção trata para quem não vai ler o resto. */
+    &__lede {
+        margin-bottom: var(--space-6);
+        font-size: var(--text-lg);
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--color-text);
+        text-wrap: pretty;
+    }
+
+    /* "Por que isso importa" — rótulo corrido, na mesma linha do texto, como o
+       método faz no papel. Num quadro à parte viraria mais um card, que é
+       exatamente o que se está desfazendo. */
+    &__importa {
+        margin-block: var(--space-6);
+        font-size: var(--text-lg);
+        font-weight: 400;
+        line-height: 1.7;
+        color: var(--color-text);
+
+        &-rotulo {
+            @include label-uppercase;
+            color: var(--color-accent-deep);
+            margin-inline-end: var(--space-2);
+        }
+    }
+
+    /* Pontos com entrada em negrito. O <strong> já vem coberto por
+       :where(.artigo) strong; o marcador é um traço, não uma bolinha — o reset
+       global já zerou list-style. */
+    &__pontos {
+        margin-block: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        list-style: none;
+    }
+
+    &__ponto {
+        position: relative;
+        padding-inline-start: var(--space-6);
+        font-size: var(--text-base);
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--color-text-muted);
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: 0;
+            top: 0.85em;
+            width: 10px;
+            height: 1px;
+            background: var(--color-accent-deep);
+        }
+    }
+
+    /* ---- "Vá mais fundo" ----
+
+       <details> nativo: acessível por teclado de graça, sem uma linha de JS, e
+       imune ao problema de conteúdo que nasce escondido.
+
+       Dois fios, não uma caixa. E duas armadilhas que valem por escrito:
+
+       1. Nunca ponha .animate-on-scroll aqui dentro. Fechado, os filhos ficam
+          display: none, o IntersectionObserver nunca dispara, e o scan() só
+          re-roda em NavigationEnd — o conteúdo nasceria opacity: 0 e ficaria
+          invisível para sempre.
+       2. Abrir e fechar muda a altura do documento sem disparar scroll nem
+          resize, e o ArtigoNavComponent só recalcula nesses dois eventos. Por
+          isso os <details> das páginas despacham um resize no (toggle).
+
+       A altura de abertura não é animada de propósito: num bloco de seis
+       parágrafos, animar altura tira a linha de leitura do lugar. */
+    &__fundo {
+        margin-block: var(--space-8);
+        border-block: 1px solid var(--color-border);
+
+        > summary {
+            /* display: flex já tira o triângulo no Chromium e no Safari
+               moderno; list-style cobre o Firefox e ::-webkit-details-marker o
+               Safari antigo. */
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            /* alvo de toque mínimo do projeto */
+            min-height: 44px;
+            padding-block: var(--space-3);
+            list-style: none;
+            cursor: pointer;
+            @include label-uppercase;
+            color: var(--color-primary);
+            transition: color var(--transition-fast);
+
+            &::-webkit-details-marker { display: none; }
+            &::marker { content: ''; }
+
+            &:hover {
+                color: var(--color-primary-dark);
+            }
+        }
+
+        &-chevron {
+            flex: none;
+            transition: transform var(--transition-base);
+        }
+
+        /* O rótulo não troca para "Recolher" ao abrir. Trocava, e o efeito era
+           que sete blocos abertos na mesma seção passavam a ter todos o mesmo
+           nome acessível — quem navega pela lista de controles de um leitor de
+           tela não distinguia um do outro. O estado aberto/fechado o <details>
+           já expõe nativamente; visualmente, quem o mostra é o chevron. */
+        &[open] > summary {
+            color: var(--color-primary-dark);
+
+            .artigo__fundo-chevron { transform: rotate(90deg); }
+        }
+
+        &-corpo {
+            padding-bottom: var(--space-6);
+        }
+    }
+
+    /* ---- Linha do tempo ----
+
+       O fio é pseudo do <ol>, e não border-left dos <li>: assim ele não pisca
+       entre um marco e outro e não depende do estado de revelação de ninguém.
+
+       Cada <li> leva .animate-on-scroll e acende ao entrar na viewport. O
+       threshold: 0.1 do ScrollRevealService é seguro aqui porque quem é
+       observado é o marco (120–220px), não o bloco inteiro — é o oposto do
+       problema que impede os .artigo__bloco de animarem.
+
+       Sem data-delay: o serviço empurra um setTimeout por elemento, e com dez
+       marcos escalonados quem rola rápido vê o último acender com dois segundos
+       de atraso, o que lê como defeito. */
+    &__linha-do-tempo {
+        --marco-ponto: 9px;
+
+        position: relative;
+        margin-block: var(--space-12);
+        padding-inline-start: var(--space-8);
+        list-style: none;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset-block: var(--space-2) var(--space-4);
+            inset-inline-start: 0;
+            width: 1px;
+            background: var(--color-border-strong);
+        }
+    }
+
+    &__marco {
+        position: relative;
+
+        + .artigo__marco {
+            margin-top: var(--space-10);
+        }
+
+        /* O <li> começa a --space-8 da borda de padding do <ol>, então o centro
+           do ponto volta essa distância mais metade do diâmetro. */
+        &::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: calc((var(--space-8) + var(--marco-ponto) / 2) * -1);
+            top: var(--space-2);
+            width: var(--marco-ponto);
+            height: var(--marco-ponto);
+            border: 2px solid var(--color-border-strong);
+            border-radius: var(--radius-full);
+            background: var(--color-bg-white);
+            transition: border-color var(--transition-base),
+                        background-color var(--transition-base);
+        }
+
+        /* É isto que "acende ao rolar". .visible vem do ScrollRevealService, e
+           continua sendo aplicada sob prefers-reduced-motion — o bloco global só
+           zera a transição, então o ponto acende instantaneamente em vez de não
+           acender. */
+        &.visible::before {
+            border-color: var(--color-accent-deep);
+            background: var(--color-accent-deep);
+        }
+
+        &-data {
+            @include label-uppercase;
+            display: block;
+            color: var(--color-accent-deep);
+            margin-bottom: var(--space-1);
+        }
+
+        /* Corpo, não display: Waylimo não tem peso 700 real, e aqui o que
+           distingue o título do marco da prosa é justamente o peso. */
+        &-titulo {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-2);
+        }
+    }
+}

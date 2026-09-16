@@ -14,12 +14,14 @@ import { filter } from 'rxjs';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ScrollRevealService } from './services/scroll-reveal.service';
 import { SeoService } from './services/seo.service';
+import { AncoraDirective } from './shared/directives/ancora.directive';
 
 @Component({
     selector: 'app-root',
     imports: [
         RouterOutlet,
         FooterComponent,
+        AncoraDirective,
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'

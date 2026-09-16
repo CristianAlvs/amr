@@ -1,0 +1,136 @@
+@use '../abstracts/mixins' as *;
+
+/* ============================================================
+   Artigo — figuras e molduras
+   Irmão de _artigo.scss; separado por assunto, não por budget.
+
+   As páginas de leitura nasceram sem uma única imagem no corpo: oito e quatro
+   seções de texto ininterrupto. Estas são as vagas onde a fotografia entra.
+   Enquanto não entra, a moldura --vazia diz o que vai ali, em vez de deixar o
+   lugar invisível e esquecido.
+
+   A conversão depois é mecânica: tira-se a classe --vazia e o <div> interno,
+   põe-se o <img>. A --proporcao continua valendo como aspect-ratio da imagem,
+   que é o que reserva o espaço e evita o salto de layout ao carregar.
+   Arquivos em public/fotos/<slug>.jpg → referenciados como /fotos/<slug>.jpg.
+   ============================================================ */
+
+.artigo {
+
+    &__figura {
+        margin-block: var(--space-10);
+
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: var(--proporcao, var(--ratio-paisagem));
+            object-fit: cover;
+        }
+
+        figcaption {
+            margin-top: var(--space-3);
+            font-size: var(--text-sm);
+            line-height: 1.6;
+            color: var(--color-text-subtle);
+            text-wrap: pretty;
+        }
+    }
+
+    /* Figura marginal, na calha DIREITA.
+
+       A esquerda não serve: lá mora a app-artigo-nav, que é sticky e ocupa os
+       190px de largura da calha em qualquer posição de rolagem. A direita o
+       grid declara vazia de propósito, como respiro.
+
+       Float mais margem negativa: a borda esquerda da figura cai na primeira
+       coluna de pixel da calha, então a margin-box não encosta na coluna e
+       nenhuma linha de texto encurta — o parágrafo continua com os 68ch.
+
+       float/clear físicos (right, não inline-end) porque inline-end só chegou
+       no Safari 17.4 e o site é LTR fixo (<html lang="pt-BR">). */
+    &__figura--calha {
+        max-width: 22rem;
+        margin-inline: auto;
+
+        @include desktop {
+            float: right;
+            /* duas marginais seguidas não se sobrepõem */
+            clear: right;
+            width: var(--artigo-calha);
+            max-width: none;
+            margin-block: var(--space-1) var(--space-6);
+            margin-inline: 0 calc((var(--space-8) + var(--artigo-calha)) * -1);
+
+            figcaption {
+                margin-top: var(--space-2);
+                font-size: var(--text-xs);
+                line-height: 1.5;
+            }
+        }
+    }
+
+    /* Sangria assimétrica, e só para a direita — pela mesma razão: a calha
+       esquerda está ocupada pela navegação sticky.
+
+       No desktop a folga é gap + calha, e a borda direita da figura aterrissa
+       exatamente na borda direita do conteúdo do container.
+
+       No celular, -(container-pad) encosta a figura na borda da viewport: ali
+       .artigo já ocupa a coluna inteira, porque --measure é mais larga que a
+       tela. Na faixa intermediária (~769–1199px) não há sangria nenhuma, e é de
+       propósito: lá .artigo é mais estreita que a coluna e fica centrada pelo
+       próprio margin-inline: auto, então uma margem negativa só a empurraria
+       para dentro dessa folga invisível — nem alinhada ao texto, nem sangrada
+       até a borda. Quanto sobra dessa folga não é calculável em CSS puro.
+
+       Nada de 100vw em lugar nenhum: inclui a barra de rolagem e cria overflow
+       horizontal. */
+    &__figura--grande {
+        margin-block: var(--space-16);
+
+        @include mobile {
+            margin-inline: calc(var(--container-pad) * -1);
+        }
+
+        @include desktop {
+            margin-inline: 0 calc((var(--space-8) + var(--artigo-calha)) * -1);
+        }
+    }
+
+    /* A vaga ainda sem arquivo. O <div> é um elemento à parte para que a
+       <figcaption> de verdade já exista desde agora — ela é conteúdo, não
+       marcação temporária, e some junto com o placeholder seria perdê-la.
+
+       No template esse <div> leva aria-hidden: é nota de produção, não imagem.
+       Com role="img" o leitor de tela anunciava "imagem: espaço reservado
+       para…", o que soa como uma foto que falhou ao carregar — e repetia o que
+       a <figcaption> já diz melhor e vai continuar dizendo depois da troca. */
+    &__figura--vazia {
+        .artigo__figura-espaco {
+            display: grid;
+            place-content: center;
+            gap: var(--space-1);
+            padding: var(--space-4);
+            aspect-ratio: var(--proporcao, var(--ratio-paisagem));
+            background: var(--color-bg);
+            border: 1px dashed var(--color-border-strong);
+            border-radius: var(--radius-sm);
+            text-align: center;
+        }
+
+        /* --color-text-muted, e não --color-text-subtle: sobre o --color-bg da
+           moldura o subtle fica em 4,35:1, abaixo do mínimo AA para texto
+           pequeno. O contraste foi validado sobre branco, que não é o fundo
+           aqui. */
+        .artigo__figura-nota {
+            @include label-uppercase;
+            color: var(--color-text-muted);
+        }
+
+        .artigo__figura-medida {
+            font-size: var(--text-xs);
+            font-weight: 300;
+            color: var(--color-text-muted);
+        }
+    }
+}

@@ -22,6 +22,8 @@
 @use 'styles/components/forms';
 @use 'styles/components/animations';
 @use 'styles/components/artigo';
+@use 'styles/components/artigo-figura';
+@use 'styles/components/artigo-leitura';
 
 // Conteúdo só para leitor de tela
 .sr-only {
@@ -69,4 +71,24 @@
     opacity: 1 !important;
     transform: none !important;
   }
+
+  // Um <details> fechado não vai ao papel, e nenhum CSS resolve isso em todos os
+  // navegadores. Isto cobre Chromium 131+, Firefox 139+ e Safari 18.4+ sem custo
+  // onde não existe; o resto do parque fica com a AbrirAoImprimirDirective.
+  // Sem os dois, imprimir uma página de doutrina perderia justamente a prosa
+  // integral que o "Vá mais fundo" guarda.
+  details::details-content { content-visibility: visible; block-size: auto; }
+  .artigo__fundo > summary { list-style: none; }
+  .artigo__fundo-chevron { display: none; }
+
+  // Sangria e marginalia não têm o que fazer numa caixa de página de ~794px
+  .artigo__figura--calha, .artigo__figura--grande {
+    float: none;
+    margin-inline: 0;
+  }
+  // A vaga sem foto é um lembrete para quem edita, não conteúdo para o leitor
+  .artigo__figura--vazia { display: none !important; }
+
+  // O ponto do marco depende de .visible, que o observer não chega a aplicar
+  .artigo__marco::before { background: #000; border-color: #000; }
 }

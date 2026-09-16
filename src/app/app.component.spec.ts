@@ -20,11 +20,15 @@ describe('AppComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
+  /* O href ganhou a barra da raiz quando o skip-link passou a usar a
+     AncoraDirective, que resolve o caminho da rota atual — antes era a âncora
+     crua '#conteudo'. O clique não navega mais: a diretiva rola e move o foco
+     sem tocar na URL. */
   it('renderiza o link de pular para o conteúdo como primeiro foco', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const skip = (fixture.nativeElement as HTMLElement).querySelector('.skip-link');
-    expect(skip?.getAttribute('href')).toBe('#conteudo');
+    expect(skip?.getAttribute('href')).toBe('/#conteudo');
   });
 
   it('renderiza o rodapé fora do outlet, para valer em todas as rotas', () => {

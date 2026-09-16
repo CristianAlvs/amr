@@ -121,6 +121,15 @@
      de Contato, que faziam a mesma função com valores diferentes. */
   --gap-col: clamp(1.75rem, 4vw, 3rem);
 
+  /* ---- Proporções de imagem ----
+     Consumidas por --proporcao nas figuras das páginas de leitura. Ficam aqui, e
+     não soltas no HTML, pela mesma regra de todo o resto: valor novo vira token
+     primeiro. Servem à moldura vazia e, quando a foto chegar, ao aspect-ratio do
+     próprio <img> — que é o que reserva o espaço e evita o salto de layout. */
+  --ratio-paisagem: 3 / 2;
+  --ratio-retrato:  4 / 5;
+  --ratio-largo:    16 / 9;
+
   /* ---- Raio ---- */
   --radius-sm:   4px;
   --radius-md:   8px;

@@ -14,30 +14,29 @@
 
     /* É aqui que ela "fica fixa conforme rola": sticky dentro da coluna da
        calha, que o grid de .artigo-layout alinha ao topo (align-items: start).
-       O max-height evita que um índice longo estoure a janela. */
+
+       Sem max-height e sem overflow: um `overflow-y: auto` aqui punha uma barra
+       de rolagem própria dentro da calha, e duas barras na mesma tela é ruído —
+       a da janela já é a única que o leitor espera. O índice cabe porque os
+       rótulos são curtos e não há título ocupando uma linha; se um dia passar de
+       ~12 seções, o caminho é encurtar rótulo ou dividir a página, não devolver
+       a barra. */
     @include desktop {
         max-width: none;
         margin-inline: 0;
         position: sticky;
         top: var(--space-8);
-        max-height: calc(100vh - var(--space-16));
-        overflow-y: auto;
     }
 }
 
 .artigo-nav {
-    /* Abaixo de 1200px é um bloco de índice acima do artigo, com a mesma cara
-       do bloco de citação: fundo tingido e filete à esquerda. */
-    padding: var(--space-6) var(--space-8);
-    background: var(--color-primary-bg);
-    border-radius: var(--radius-md);
-    border-left: 4px solid var(--color-primary);
-
-    &__titulo {
-        @include label-uppercase;
-        color: var(--color-primary);
-        margin-bottom: var(--space-4);
-    }
+    /* Abaixo de 1200px é um bloco de índice acima do artigo, marcado por dois
+       fios. Era uma caixa tingida com raio e filete de 4px, igual à que o bloco
+       de citação usava; quando a citação deixou de ser caixa, esta ficaria sendo
+       a única sobrando — e logo no alto da página, que é o pior lugar para o
+       carimbo que se estava desfazendo. */
+    padding-block: var(--space-5);
+    border-block: 1px solid var(--color-border);
 
     &__lista {
         display: flex;
@@ -80,17 +79,15 @@
     }
 
     @include mobile {
-        padding: var(--space-5) var(--space-6);
+        padding-block: var(--space-4);
     }
 
-    /* Na calha: sem caixa. O filete de guia é feito pelas próprias bordas dos
+    /* Na calha: nem os fios. O filete de guia é feito pelas próprias bordas dos
        links, encostadas umas nas outras (gap: 0) — assim a marca da seção em
        leitura acende um trecho da linha, em vez de flutuar ao lado dela. */
     @include desktop {
-        padding: 0;
-        background: none;
-        border-left: none;
-        border-radius: 0;
+        padding-block: 0;
+        border-block: none;
 
         &__lista {
             gap: 0;

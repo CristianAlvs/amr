@@ -34,7 +34,7 @@ describe('WilliamBranhamComponent', () => {
   it('todo item da navegação aponta para uma seção da página', () => {
     const el = fixture.nativeElement as HTMLElement;
     const itens = Array.from(el.querySelectorAll<HTMLAnchorElement>('.artigo-nav__link'));
-    expect(itens.length).toBe(8);
+    expect(itens.length).toBe(9);
 
     for (const item of itens) {
       const fragment = item.getAttribute('href')?.split('#')[1];

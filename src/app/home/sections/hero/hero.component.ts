@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../../layout/navbar/navbar.component';
+import { AncoraDirective } from '../../../shared/directives/ancora.directive';
 
 @Component({
   selector: 'app-hero',
-  imports: [NavbarComponent, RouterLink],
+  imports: [NavbarComponent, AncoraDirective],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss'
 })

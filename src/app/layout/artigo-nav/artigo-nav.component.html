@@ -1,10 +1,11 @@
+<!-- Sem título visível: o rótulo ocupava uma linha inteira da calha, que é o
+     espaço de que a lista precisa para caber sem rolagem própria. O aria-label
+     continua nomeando a navegação para quem usa leitor de tela. -->
 <nav class="artigo-nav" [attr.aria-label]="titulo()">
-  <h2 class="artigo-nav__titulo">{{ titulo() }}</h2>
   <ol class="artigo-nav__lista">
     @for (secao of secoes(); track secao.fragment) {
       <li>
-        <a [routerLink]="[]"
-           [fragment]="secao.fragment"
+        <a [amrAncora]="secao.fragment"
            class="artigo-nav__link"
            [class.artigo-nav__link--ativa]="ativa() === secao.fragment"
            [attr.aria-current]="ativa() === secao.fragment ? 'true' : null">

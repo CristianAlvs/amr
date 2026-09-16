@@ -8,7 +8,7 @@ import {
     input,
     signal
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { AncoraDirective } from '../../shared/directives/ancora.directive';
 
 export interface SecaoArtigo {
     /** id da <section> correspondente; entra na URL como fragment */
@@ -30,7 +30,7 @@ export interface SecaoArtigo {
  */
 @Component({
     selector: 'app-artigo-nav',
-    imports: [RouterLink],
+    imports: [AncoraDirective],
     templateUrl: './artigo-nav.component.html',
     styleUrl: './artigo-nav.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush

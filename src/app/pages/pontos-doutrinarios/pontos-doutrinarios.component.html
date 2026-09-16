@@ -7,14 +7,49 @@
   <div class="container artigo-layout">
     <app-artigo-nav [secoes]="secoes" />
 
-    <article class="artigo" id="conteudo" tabindex="-1">
+    <article class="artigo" id="conteudo" tabindex="-1" amrBlocosRecolhiveis>
+
+      <!-- O essencial, para quem tem cinco minutos. O texto completo continua
+           inteiro abaixo, dentro dos blocos "Vá mais fundo". -->
+      <section class="artigo__resumo animate-fade-up" aria-labelledby="resumo-titulo">
+        <h2 class="artigo__resumo-titulo" id="resumo-titulo">O essencial</h2>
+        <ul class="artigo__pontos">
+          <li class="artigo__ponto">
+            <strong>O batismo.</strong> Os apóstolos batizaram em nome do Senhor Jesus Cristo —
+            judeus, samaritanos e gentios —, e é assim que se deve batizar.
+          </li>
+          <li class="artigo__ponto">
+            <strong>A Deidade.</strong> Não há primeira, segunda ou terceira pessoa na Bíblia. Há um
+            só Deus, manifestado em carne, em três ofícios e num só Nome.
+          </li>
+          <li class="artigo__ponto">
+            <strong>O Jeová do Velho Testamento.</strong> O que o Velho Testamento declara de Jeová,
+            o Novo declara de Jesus — doze pares de versículos, lado a lado.
+          </li>
+          <li class="artigo__ponto">
+            <strong>A Palavra vem ao profeta.</strong> Deus nada faz sem revelar o Seu segredo aos
+            profetas, e prometeu um Elias antes do Dia do Senhor.
+          </li>
+        </ul>
+        <p class="artigo__resumo-meta">24 minutos de leitura completa &middot; 4 seções</p>
+      </section>
 
       <!-- ============ 1 ============ -->
       <section class="artigo__bloco" id="batismo">
         <h2>Por que batizar em nome do Senhor Jesus Cristo?</h2>
 
-        <h3>A ordenança</h3>
-        <figure class="artigo__citacao">
+        <figure class="artigo__figura artigo__figura--grande artigo__figura--vazia"
+                style="--proporcao: var(--ratio-largo)">
+          <div class="artigo__figura-espaco" aria-hidden="true">
+            <span class="artigo__figura-nota">Batismo nas águas</span>
+            <span class="artigo__figura-medida">horizontal &middot; mín. 1600 px de largura</span>
+          </div>
+          <figcaption>
+            O batismo nas águas em nome do Senhor Jesus Cristo, como a igreja apostólica batizava.
+          </figcaption>
+        </figure>
+
+        <figure class="artigo__citacao artigo__citacao--chave">
           <blockquote>
             <p>
               Portanto ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do
@@ -23,80 +58,139 @@
           </blockquote>
           <figcaption class="artigo__referencia">Mateus 28:19</figcaption>
         </figure>
-        <p>
-          Contudo, os apóstolos não repetiram estas palavras como fórmula. Batizavam
-          especificamente em nome do Senhor Jesus Cristo, pois Ele era a manifestação do Pai
-          (João 17:6).
+
+        <p class="artigo__lede">
+          Os apóstolos não repetiram estas palavras como fórmula. Batizavam em nome do Senhor Jesus
+          Cristo, pois Ele era a manifestação do Pai (João 17:6).
         </p>
 
-        <h3>O batismo dos judeus</h3>
-        <p>
-          No Pentecostes, quando Pedro foi questionado <em>&ldquo;Que faremos?&rdquo;</em>, respondeu:
+        <p class="artigo__importa">
+          <span class="artigo__importa-rotulo">Por que isso importa</span>
+          O livro de Atos mostra a Igreja em ação. Se foi assim que batizaram, é assim que se deve
+          batizar.
         </p>
-        <figure class="artigo__citacao">
-          <blockquote>
+
+        <ul class="artigo__pontos">
+          <li class="artigo__ponto">
+            <strong>Os judeus.</strong> No Pentecostes, Pedro respondeu ao <em>&ldquo;Que
+            faremos?&rdquo;</em> mandando que cada um fosse batizado em nome de Jesus Cristo
+            (Atos 2:38).
+          </li>
+          <li class="artigo__ponto">
+            <strong>Os samaritanos.</strong> Os convertidos de Filipe foram batizados em nome do
+            Senhor Jesus, e os apóstolos confirmaram (Atos 8:12, 14-17).
+          </li>
+          <li class="artigo__ponto">
+            <strong>Os gentios.</strong> Pedro ordenou o mesmo na casa de Cornélio, depois de eles
+            receberem o Espírito Santo (Atos 10:47-48).
+          </li>
+          <li class="artigo__ponto">
+            <strong>Paulo.</strong> Batizava igualmente em nome do Senhor Jesus Cristo
+            (Atos 19:1-6), por autoridade recebida mediante revelação (Gálatas 1:11-12).
+          </li>
+        </ul>
+
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">Vá mais fundo &middot; verso a verso, em cada povo</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+            <h3>O batismo dos judeus</h3>
             <p>
-              Arrependei-vos, e cada um de vós seja batizado em nome de Jesus Cristo, para perdão dos
-              pecados; e recebereis o dom do Espírito Santo.
+              No Pentecostes, quando Pedro foi questionado <em>&ldquo;Que faremos?&rdquo;</em>, respondeu:
             </p>
-          </blockquote>
-          <figcaption class="artigo__referencia">Atos 2:38</figcaption>
-        </figure>
-        <p>
-          Mateus estava presente e não corrigiu Pedro, o que indica aprovação apostólica.
-        </p>
-
-        <h3>O batismo dos samaritanos</h3>
-        <p>
-          Em Atos 8, Filipe pregava a samaritanos — que não eram judeus — sobre Jesus Cristo. Os
-          convertidos <em>se batizavam, tanto homens como mulheres</em>, e os apóstolos confirmaram
-          que haviam sido batizados em nome do Senhor Jesus (Atos 8:12, 14-17).
-        </p>
-
-        <h3>O batismo dos gentios</h3>
-        <p>
-          Pedro, na casa de Cornélio, ordenou que os gentios fossem batizados em nome do Senhor
-          (Atos 10:47-48), depois de haverem recebido o Espírito Santo.
-        </p>
-
-        <h3>Paulo e o batismo</h3>
-        <p>
-          Paulo batizava igualmente em nome do Senhor Jesus Cristo, conforme Atos 19:1-6. Embora não
-          estivesse presente às instruções finais de Jesus em Mateus 28:19, recebeu autoridade divina
-          mediante revelação (Gálatas 1:11-12), e escreveu:
-        </p>
-        <figure class="artigo__citacao">
-          <blockquote>
+            <figure class="artigo__citacao">
+              <blockquote>
+                <p>
+                  Arrependei-vos, e cada um de vós seja batizado em nome de Jesus Cristo, para perdão dos
+                  pecados; e recebereis o dom do Espírito Santo.
+                </p>
+              </blockquote>
+              <figcaption class="artigo__referencia">Atos 2:38</figcaption>
+            </figure>
             <p>
-              E, quanto fizerdes por palavras ou por obras, fazei tudo em nome do Senhor Jesus.
+              Mateus estava presente e não corrigiu Pedro, o que indica aprovação apostólica.
             </p>
-          </blockquote>
-          <figcaption class="artigo__referencia">Colossenses 3:17</figcaption>
-        </figure>
+
+            <h3>O batismo dos samaritanos</h3>
+            <p>
+              Em Atos 8, Filipe pregava a samaritanos — que não eram judeus — sobre Jesus Cristo. Os
+              convertidos <em>se batizavam, tanto homens como mulheres</em>, e os apóstolos confirmaram
+              que haviam sido batizados em nome do Senhor Jesus (Atos 8:12, 14-17).
+            </p>
+
+            <h3>O batismo dos gentios</h3>
+            <p>
+              Pedro, na casa de Cornélio, ordenou que os gentios fossem batizados em nome do Senhor
+              (Atos 10:47-48), depois de haverem recebido o Espírito Santo.
+            </p>
+
+            <h3>Paulo e o batismo</h3>
+            <p>
+              Paulo batizava igualmente em nome do Senhor Jesus Cristo, conforme Atos 19:1-6. Embora não
+              estivesse presente às instruções finais de Jesus em Mateus 28:19, recebeu autoridade divina
+              mediante revelação (Gálatas 1:11-12), e escreveu:
+            </p>
+            <figure class="artigo__citacao">
+              <blockquote>
+                <p>
+                  E, quanto fizerdes por palavras ou por obras, fazei tudo em nome do Senhor Jesus.
+                </p>
+              </blockquote>
+              <figcaption class="artigo__referencia">Colossenses 3:17</figcaption>
+            </figure>
+          </div>
+        </details>
 
         <h3>Perguntas respondidas</h3>
-        <p>
-          <strong>Se Jesus queria o batismo em Seu nome, por que não o disse?</strong> Ele o disse:
-          falou <em>no nome</em>. Jesus declarou ter vindo em nome de Seu Pai (João 5:43); o nome do
-          Pai é Jesus (Mateus 1:21); e o Espírito Santo é revelado em nome de Jesus (João 14:26).
-        </p>
-        <p>
-          Pedro, depois de ter o entendimento aberto (Lucas 24:45-47), prescreveu o batismo em nome
-          do Senhor Jesus no dia de Pentecostes. A questão não é escolher entre aceitar Jesus em
-          Mateus 28:19 ou Pedro em Atos 2:38: em Atos 2:38 era o Espírito Santo falando por meio de
-          Pedro (I Pedro 1:12). Foi a Pedro que foram dadas as chaves do Reino (Mateus 16:16-17), e
-          ele ordenou o batismo em nome do Senhor Jesus Cristo. O livro de Atos mostra a Igreja em
-          ação; se foi assim que batizaram, é assim que se deve batizar.
-        </p>
-        <figure class="artigo__citacao">
-          <blockquote>
+
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">Se Jesus queria o batismo em Seu nome, por que não o disse?</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
             <p>
-              Para que vos lembreis das palavras que primeiramente foram ditas pelos santos profetas,
-              e do nosso mandamento, como apóstolos do Senhor e Salvador.
+              Ele o disse: falou <em>no nome</em>. Jesus declarou ter vindo em nome de Seu Pai
+              (João 5:43); o nome do Pai é Jesus (Mateus 1:21); e o Espírito Santo é revelado em nome
+              de Jesus (João 14:26).
             </p>
-          </blockquote>
-          <figcaption class="artigo__referencia">II Pedro 3:2</figcaption>
-        </figure>
+          </div>
+        </details>
+
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">É preciso escolher entre Mateus 28:19 e Atos 2:38?</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+            <p>
+              Pedro, depois de ter o entendimento aberto (Lucas 24:45-47), prescreveu o batismo em nome
+              do Senhor Jesus no dia de Pentecostes. A questão não é escolher entre aceitar Jesus em
+              Mateus 28:19 ou Pedro em Atos 2:38: em Atos 2:38 era o Espírito Santo falando por meio de
+              Pedro (I Pedro 1:12). Foi a Pedro que foram dadas as chaves do Reino (Mateus 16:16-17), e
+              ele ordenou o batismo em nome do Senhor Jesus Cristo. O livro de Atos mostra a Igreja em
+              ação; se foi assim que batizaram, é assim que se deve batizar.
+            </p>
+            <figure class="artigo__citacao">
+              <blockquote>
+                <p>
+                  Para que vos lembreis das palavras que primeiramente foram ditas pelos santos profetas,
+                  e do nosso mandamento, como apóstolos do Senhor e Salvador.
+                </p>
+              </blockquote>
+              <figcaption class="artigo__referencia">II Pedro 3:2</figcaption>
+            </figure>
+          </div>
+        </details>
+
         <p>
           Consulte as Escrituras com o coração aberto, seja batizado em nome do Senhor Jesus Cristo,
           e Deus o encherá com o Seu Espírito. <strong>A fórmula correta para o batismo nas águas tem
@@ -108,6 +202,32 @@
       <section class="artigo__bloco" id="deidade">
         <h2>Jesus, Senhor e Cristo</h2>
 
+        <p class="artigo__lede">
+          A Bíblia não menciona primeira, segunda ou terceira pessoa. Ela diz que
+          <em>Deus se manifestou em carne</em>.
+        </p>
+
+        <p class="artigo__importa">
+          <span class="artigo__importa-rotulo">Por que isso importa</span>
+          Se Jesus é Senhor e Cristo, não podem ser três pessoas distintas — e o batismo em um só
+          Nome deixa de ser uma peculiaridade para ser a consequência.
+        </p>
+
+        <ul class="artigo__pontos">
+          <li class="artigo__ponto">
+            <strong>Três ofícios, não três pessoas.</strong> Pai, Filho e Espírito Santo são títulos
+            maiores de um só Deus, manifestado numa única pessoa encarnada.
+          </li>
+          <li class="artigo__ponto">
+            <strong>Deus é Espírito.</strong> O Grande Arquiteto construiu para Si mesmo um corpo —
+            Jesus — e nele habitou em plenitude (Colossenses 2:9).
+          </li>
+          <li class="artigo__ponto">
+            <strong>A data do dogma.</strong> A doutrina da Trindade foi elaborada em 325 d.C. e
+            confirmada em 381 d.C. Se fosse de Deus, estaria em Sua Palavra.
+          </li>
+        </ul>
+
         <h3>A doutrina da Trindade não é bíblica</h3>
         <p>
           A doutrina da Trindade não existiu na era apostólica nem se encontra nas Escrituras. A
@@ -116,7 +236,7 @@
         </p>
 
         <h3>Jesus é Senhor e Cristo</h3>
-        <figure class="artigo__citacao">
+        <figure class="artigo__citacao artigo__citacao--chave">
           <blockquote>
             <p>
               Saiba pois com certeza toda a casa de Israel que a esse Jesus, a quem vós crucificastes,
@@ -170,111 +290,178 @@
           (Colossenses 2:9).
         </p>
 
-        <h3>&ldquo;Meu Pai trabalha até agora, e eu trabalho também&rdquo; (João 5:17)</h3>
+        <h3>Objeções respondidas</h3>
         <p>
-          Não indica duas pessoas. O Pai, que é Espírito, trabalhava por meio do Filho, que é o
-          corpo. <em>Porque eu desci do céu, não para fazer a minha vontade, mas a vontade daquele
-          que me enviou</em> (João 6:38). <em>Eu e o Pai somos um</em> (João 10:30). O Espírito, que
-          é Deus, realizava a obra por meio da carne chamada Jesus: <em>Deus estava em Cristo
-          reconciliando consigo o mundo</em> (II Coríntios 5:19).
+          Sete passagens costumam ser levantadas contra o que está dito acima. Cada uma delas está
+          respondida abaixo, com a Escritura à mão.
         </p>
-        <figure class="artigo__citacao">
-          <blockquote>
+
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">&ldquo;Meu Pai trabalha até agora, e eu trabalho também&rdquo; (João 5:17)</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
             <p>
-              No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus… E o Verbo se
-              fez carne, e habitou entre nós.
+              Não indica duas pessoas. O Pai, que é Espírito, trabalhava por meio do Filho, que é o
+              corpo. <em>Porque eu desci do céu, não para fazer a minha vontade, mas a vontade daquele
+              que me enviou</em> (João 6:38). <em>Eu e o Pai somos um</em> (João 10:30). O Espírito, que
+              é Deus, realizava a obra por meio da carne chamada Jesus: <em>Deus estava em Cristo
+              reconciliando consigo o mundo</em> (II Coríntios 5:19).
             </p>
-          </blockquote>
-          <figcaption class="artigo__referencia">João 1:1, 14</figcaption>
-        </figure>
+            <figure class="artigo__citacao">
+              <blockquote>
+                <p>
+                  No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus… E o Verbo se
+                  fez carne, e habitou entre nós.
+                </p>
+              </blockquote>
+              <figcaption class="artigo__referencia">João 1:1, 14</figcaption>
+            </figure>
+          </div>
+        </details>
 
-        <h3>&ldquo;Eu rogarei ao Pai, e ele vos dará outro Consolador&rdquo; (João 14:16)</h3>
-        <p>
-          Não pare no versículo 16; prossiga aos versículos 17 e 18:
-        </p>
-        <figure class="artigo__citacao">
-          <blockquote>
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">&ldquo;Eu rogarei ao Pai, e ele vos dará outro Consolador&rdquo; (João 14:16)</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
             <p>
-              O Espírito de verdade, que o mundo não pode receber… habita convosco, e estará em vós.
-              Não vos deixarei órfãos; voltarei para vós.
+              Não pare no versículo 16; prossiga aos versículos 17 e 18:
             </p>
-          </blockquote>
-          <figcaption class="artigo__referencia">João 14:17-18</figcaption>
-        </figure>
-        <p>
-          Ele estava encarnado em Jesus Cristo, habitando com eles. Mateus 13:11 afirma que aos
-          escolhidos é dado conhecer os mistérios do Reino. E a Escritura se repete: a filha de
-          Herodias representa o sistema denominacional dançando diante do rei, procurando agradá-lo
-          contra o profeta. Deus necessita de homens dispostos a sofrer pelo Seu Nome, e não pelo
-          nome <em>Trindade</em>. <em>Quem vê a mim vê o Pai</em> (João 14:9).
-        </p>
-
-        <h3>O relato de Sadhu Sundar Singh</h3>
-        <p>
-          Conforme relatado em <em>O Apóstolo dos Pés Sangrentos</em>:
-        </p>
-        <figure class="artigo__citacao">
-          <blockquote>
+            <figure class="artigo__citacao">
+              <blockquote>
+                <p>
+                  O Espírito de verdade, que o mundo não pode receber… habita convosco, e estará em vós.
+                  Não vos deixarei órfãos; voltarei para vós.
+                </p>
+              </blockquote>
+              <figcaption class="artigo__referencia">João 14:17-18</figcaption>
+            </figure>
             <p>
-              Houve um tempo em que a doutrina da Trindade me deixava confuso… numa visão vi Cristo
-              com o seu glorioso corpo espiritual, assentado no trono… Quando pela primeira vez
-              entrei no céu, perguntei: mas onde está Deus? E alguém respondeu: como na terra, aqui
-              também Deus não é visto… Mas aqui está Cristo, e Cristo é Deus.
+              Ele estava encarnado em Jesus Cristo, habitando com eles. Mateus 13:11 afirma que aos
+              escolhidos é dado conhecer os mistérios do Reino. E a Escritura se repete: a filha de
+              Herodias representa o sistema denominacional dançando diante do rei, procurando agradá-lo
+              contra o profeta. Deus necessita de homens dispostos a sofrer pelo Seu Nome, e não pelo
+              nome <em>Trindade</em>. <em>Quem vê a mim vê o Pai</em> (João 14:9).
             </p>
-          </blockquote>
-        </figure>
+          </div>
+        </details>
 
-        <h3>&ldquo;Viremos para ele e faremos nele morada&rdquo; (João 14:23)</h3>
-        <p>
-          Não pense em três pessoas, mas em três ofícios. Deus, sendo onipotente, pode manifestar-se
-          de vários modos ao mesmo tempo: Rei, Sacerdote e Profeta. Como poderia Deus, sendo uma
-          pessoa, juntar-se a outra pessoa para fazer morada no seu corpo, sem que você tivesse duas
-          ou três pessoas morando em si?
-        </p>
-        <p>
-          Jesus fala de Si e de Seu Pai. O Espírito que faz morada é o Espírito Santo
-          (I Coríntios 3:16), exercendo três ofícios: reina, intercede e ilumina — exorta, edifica e
-          consola. O Pai não deixou o trono; o Filho não deixou a intercessão. É o Espírito de
-          verdade reinando, intercedendo e consolando. Por isso o verbo está no plural: Deus em Seus
-          ofícios, sobre nós, por nós e em nós.
-        </p>
-        <figure class="artigo__citacao">
-          <blockquote>
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">O relato de Sadhu Sundar Singh</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
             <p>
-              Um só Deus e Pai de todos, o qual é sobre todos, e por todos, e em todos vós.
+              Conforme relatado em <em>O Apóstolo dos Pés Sangrentos</em>:
             </p>
-          </blockquote>
-          <figcaption class="artigo__referencia">Efésios 4:6</figcaption>
-        </figure>
+            <figure class="artigo__citacao">
+              <blockquote>
+                <p>
+                  Houve um tempo em que a doutrina da Trindade me deixava confuso… numa visão vi Cristo
+                  com o seu glorioso corpo espiritual, assentado no trono… Quando pela primeira vez
+                  entrei no céu, perguntei: mas onde está Deus? E alguém respondeu: como na terra, aqui
+                  também Deus não é visto… Mas aqui está Cristo, e Cristo é Deus.
+                </p>
+              </blockquote>
+            </figure>
+          </div>
+        </details>
 
-        <h3>&ldquo;Aquele Espírito de verdade, que procede do Pai&rdquo; (João 15:26)</h3>
-        <p>
-          Espírito é pessoa? Não. Jesus disse: <em>um espírito não tem carne nem ossos, como vedes
-          que eu tenho</em> (Lucas 24:39). E quem é o Pai de Jesus? <em>Achou-se ter concebido do
-          Espírito Santo</em> (Mateus 1:18). Aquele de quem a mulher concebe é o pai da criança;
-          logo, o Pai de Jesus é o Espírito Santo. E que Espírito é esse? Deus —
-          <em>Deus é Espírito</em> (João 4:24).
-        </p>
-        <p>
-          O Espírito Santo veio no Pentecostes e se repartiu para cumprir: <em>Naquele dia
-          conhecereis que estou em meu Pai, e vós em mim, e eu em vós</em> (João 14:20). Deus Todo
-          Poderoso vem como Espírito para encher a Sua verdadeira Igreja.
-        </p>
-        <p>
-          Onde estão, então, as três pessoas? A doutrina da Trindade foi elaborada em 325 d.C., sob o
-          papa Silvestre, e confirmada como dogma em 381 d.C., sob o papa Dâmaso. Onde a Bíblia cita
-          a palavra <em>Trindade</em>? Se fosse de Deus, estaria em Sua Palavra.
-        </p>
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">&ldquo;Viremos para ele e faremos nele morada&rdquo; (João 14:23)</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+            <p>
+              Não pense em três pessoas, mas em três ofícios. Deus, sendo onipotente, pode manifestar-se
+              de vários modos ao mesmo tempo: Rei, Sacerdote e Profeta. Como poderia Deus, sendo uma
+              pessoa, juntar-se a outra pessoa para fazer morada no seu corpo, sem que você tivesse duas
+              ou três pessoas morando em si?
+            </p>
+            <p>
+              Jesus fala de Si e de Seu Pai. O Espírito que faz morada é o Espírito Santo
+              (I Coríntios 3:16), exercendo três ofícios: reina, intercede e ilumina — exorta, edifica e
+              consola. O Pai não deixou o trono; o Filho não deixou a intercessão. É o Espírito de
+              verdade reinando, intercedendo e consolando. Por isso o verbo está no plural: Deus em Seus
+              ofícios, sobre nós, por nós e em nós.
+            </p>
+            <figure class="artigo__citacao">
+              <blockquote>
+                <p>
+                  Um só Deus e Pai de todos, o qual é sobre todos, e por todos, e em todos vós.
+                </p>
+              </blockquote>
+              <figcaption class="artigo__referencia">Efésios 4:6</figcaption>
+            </figure>
+          </div>
+        </details>
 
-        <h3>&ldquo;O nome dele e o de seu Pai&rdquo; (Apocalipse 14:1)</h3>
-        <p>
-          Nas testas significa na mente. A marca da besta não é um sinal de tinta, mas uma marca na
-          mente (Ezequiel 9:4). E este sinal é o nome do Pai, do Filho e do Espírito Santo: Senhor
-          Jesus Cristo.
-        </p>
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">&ldquo;Aquele Espírito de verdade, que procede do Pai&rdquo; (João 15:26)</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+            <p>
+              Espírito é pessoa? Não. Jesus disse: <em>um espírito não tem carne nem ossos, como vedes
+              que eu tenho</em> (Lucas 24:39). E quem é o Pai de Jesus? <em>Achou-se ter concebido do
+              Espírito Santo</em> (Mateus 1:18). Aquele de quem a mulher concebe é o pai da criança;
+              logo, o Pai de Jesus é o Espírito Santo. E que Espírito é esse? Deus —
+              <em>Deus é Espírito</em> (João 4:24).
+            </p>
+            <p>
+              O Espírito Santo veio no Pentecostes e se repartiu para cumprir: <em>Naquele dia
+              conhecereis que estou em meu Pai, e vós em mim, e eu em vós</em> (João 14:20). Deus Todo
+              Poderoso vem como Espírito para encher a Sua verdadeira Igreja.
+            </p>
+            <p>
+              Onde estão, então, as três pessoas? A doutrina da Trindade foi elaborada em 325 d.C., sob o
+              papa Silvestre, e confirmada como dogma em 381 d.C., sob o papa Dâmaso. Onde a Bíblia cita
+              a palavra <em>Trindade</em>? Se fosse de Deus, estaria em Sua Palavra.
+            </p>
+          </div>
+        </details>
 
-        <h3>Bases bíblicas</h3>
-        <p>
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">&ldquo;O nome dele e o de seu Pai&rdquo; (Apocalipse 14:1)</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+            <p>
+              Nas testas significa na mente. A marca da besta não é um sinal de tinta, mas uma marca na
+              mente (Ezequiel 9:4). E este sinal é o nome do Pai, do Filho e do Espírito Santo: Senhor
+              Jesus Cristo.
+            </p>
+          </div>
+        </details>
+
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">Bases bíblicas &middot; oito pontos, verso a verso</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+            <p>
           <strong>Um só assentado no trono.</strong> <em>E logo fui arrebatado em espírito, e eis que
           um trono estava posto no céu, e um assentado sobre o trono</em> (Apocalipse 4:2).
           <em>Vi ao Senhor assentado sobre o seu trono</em> (I Reis 22:19). <em>E sobre o firmamento
@@ -326,12 +513,15 @@
           conhecido, Filipe? Quem me vê a mim vê o Pai</em> (João 14:8-9).
         </p>
         <p>
-          Como falar, então, em três pessoas distintas? A nuvem que separava Israel dos egípcios
-          clareava para Israel, mas escurecia para os egípcios. Assim é com esta Mensagem: traz luz
-          aos eleitos de Deus e escurece para os que não o são. <em>E todo aquele que nele crer não
-          será confundido</em> (Romanos 9:33). A Bíblia não é de particular interpretação; depende de
-          revelação. Nela está o maná escondido, alcançado pela revelação.
-        </p>
+              Como falar, então, em três pessoas distintas? A nuvem que separava Israel dos egípcios
+              clareava para Israel, mas escurecia para os egípcios. Assim é com esta Mensagem: traz luz
+              aos eleitos de Deus e escurece para os que não o são. <em>E todo aquele que nele crer não
+              será confundido</em> (Romanos 9:33). A Bíblia não é de particular interpretação; depende de
+              revelação. Nela está o maná escondido, alcançado pela revelação.
+            </p>
+          </div>
+        </details>
+
         <figure class="artigo__citacao">
           <blockquote>
             <p>
@@ -344,9 +534,24 @@
       <!-- ============ 3 ============ -->
       <section class="artigo__bloco" id="jeova">
         <h2>Jesus Cristo é o Jeová do Velho Testamento</h2>
-        <p>
-          O que o Velho Testamento declara de Jeová, o Novo Testamento declara de Jesus. Compare lado
-          a lado.
+
+        <figure class="artigo__figura artigo__figura--calha artigo__figura--vazia"
+                style="--proporcao: var(--ratio-paisagem)">
+          <div class="artigo__figura-espaco" aria-hidden="true">
+            <span class="artigo__figura-nota">Bíblia aberta</span>
+            <span class="artigo__figura-medida">horizontal &middot; mín. 900 px de largura</span>
+          </div>
+          <figcaption>Os dois Testamentos falando do mesmo Senhor.</figcaption>
+        </figure>
+
+        <p class="artigo__lede">
+          O que o Velho Testamento declara de Jeová, o Novo Testamento declara de Jesus.
+        </p>
+
+        <p class="artigo__importa">
+          <span class="artigo__importa-rotulo">Por que isso importa</span>
+          Doze pares de versículos, lado a lado. Nenhum comentário entre eles: a comparação faz o
+          argumento sozinha.
         </p>
 
         <ol class="artigo__paralelos">
@@ -374,42 +579,53 @@
           }
         </ol>
 
-        <h3>Síntese das Escrituras</h3>
-        <p>As Escrituras afirmam que:</p>
-        <p>
-          Deus é invisível (I Timóteo 1:17 e 6:16). Deus é Espírito (João 4:24). Deus é infinito
-          (Jeremias 23:24). Jesus Cristo é a revelação de Deus (João 1:18). Jesus é a imagem de Deus
-          (Colossenses 1:15; II Coríntios 4:4-6). Jesus é Deus conosco. Deus estava em Cristo
-          (II Coríntios 5:19). Deus habita em Cristo (Colossenses 2:9). Deus é Salvador em Cristo
-          (Judas 25).
-        </p>
-        <p>
-          Portanto, Jesus Cristo é a revelação de Deus; Ele é Deus encarnado (João 1:14). Quem vê a
-          Jesus vê a Deus; quem conhece a Jesus, conhece a Deus (João 8:19). Ninguém vê ao Pai senão
-          em Jesus (João 14:6-10). <em>Não que alguém visse ao Pai, a não ser aquele que é de Deus;
-          este tem visto ao Pai</em> (João 6:46). <em>Quem vê a mim vê ao Pai</em> (João 14:9), pois
-          <em>Eu e o Pai somos um</em> (João 10:30).
-        </p>
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">Vá mais fundo &middot; a síntese e o reconhecimento apostólico</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+            <h3>Síntese das Escrituras</h3>
+            <p>As Escrituras afirmam que:</p>
+            <p>
+              Deus é invisível (I Timóteo 1:17 e 6:16). Deus é Espírito (João 4:24). Deus é infinito
+              (Jeremias 23:24). Jesus Cristo é a revelação de Deus (João 1:18). Jesus é a imagem de Deus
+              (Colossenses 1:15; II Coríntios 4:4-6). Jesus é Deus conosco. Deus estava em Cristo
+              (II Coríntios 5:19). Deus habita em Cristo (Colossenses 2:9). Deus é Salvador em Cristo
+              (Judas 25).
+            </p>
+            <p>
+              Portanto, Jesus Cristo é a revelação de Deus; Ele é Deus encarnado (João 1:14). Quem vê a
+              Jesus vê a Deus; quem conhece a Jesus, conhece a Deus (João 8:19). Ninguém vê ao Pai senão
+              em Jesus (João 14:6-10). <em>Não que alguém visse ao Pai, a não ser aquele que é de Deus;
+              este tem visto ao Pai</em> (João 6:46). <em>Quem vê a mim vê ao Pai</em> (João 14:9), pois
+              <em>Eu e o Pai somos um</em> (João 10:30).
+            </p>
 
-        <h3>O reconhecimento apostólico</h3>
-        <p>
-          Por essa razão, Tomé exclamou: <em>Senhor meu, e Deus meu!</em> (João 20:28). Pedro disse:
-          <em>nosso Deus e Salvador Jesus Cristo</em> (II Pedro 1:1). E Paulo escreveu que Cristo é
-          <em>Deus bendito eternamente</em> (Romanos 9:5).
-        </p>
+            <h3>O reconhecimento apostólico</h3>
+            <p>
+              Por essa razão, Tomé exclamou: <em>Senhor meu, e Deus meu!</em> (João 20:28). Pedro disse:
+              <em>nosso Deus e Salvador Jesus Cristo</em> (II Pedro 1:1). E Paulo escreveu que Cristo é
+              <em>Deus bendito eternamente</em> (Romanos 9:5).
+            </p>
 
-        <h3>O batismo apostólico</h3>
-        <p>
-          Os apóstolos, tendo a revelação (Lucas 24:45; Gálatas 1:12), em cumprimento a Mateus 28:19,
-          batizavam usando o nome do Pai, do Filho e do Espírito Santo, como se vê em Atos 2:38,
-          Atos 8:14-16, Atos 10:47-48 e Atos 19:1-5.
-        </p>
-        <p>
-          Jesus veio manifestar o Nome de Deus aos homens: <em>Manifestei o teu nome</em>
-          (João 17:6); <em>eu lhes fiz conhecer o teu nome</em> (João 17:26); <em>eu vim em nome de
-          meu Pai</em> (João 5:43); <em>o Espírito Santo, que o Pai enviará em meu nome</em>
-          (João 14:26).
-        </p>
+            <h3>O batismo apostólico</h3>
+            <p>
+              Os apóstolos, tendo a revelação (Lucas 24:45; Gálatas 1:12), em cumprimento a Mateus 28:19,
+              batizavam usando o nome do Pai, do Filho e do Espírito Santo, como se vê em Atos 2:38,
+              Atos 8:14-16, Atos 10:47-48 e Atos 19:1-5.
+            </p>
+            <p>
+              Jesus veio manifestar o Nome de Deus aos homens: <em>Manifestei o teu nome</em>
+              (João 17:6); <em>eu lhes fiz conhecer o teu nome</em> (João 17:26); <em>eu vim em nome de
+              meu Pai</em> (João 5:43); <em>o Espírito Santo, que o Pai enviará em meu nome</em>
+              (João 14:26).
+            </p>
+          </div>
+        </details>
+
         <p>
           Se você tem crido nestas verdades, receba no seu batismo o nome do Pai, do Filho e do
           Espírito Santo, que é Senhor Jesus Cristo, e, numa só fé, num só batismo e num só Senhor,
@@ -430,8 +646,18 @@
       <section class="artigo__bloco" id="palavra-ao-profeta">
         <h2>A Palavra vem ao profeta</h2>
 
-        <h3>Fundamento bíblico</h3>
-        <figure class="artigo__citacao">
+        <figure class="artigo__figura artigo__figura--grande artigo__figura--vazia"
+                style="--proporcao: var(--ratio-largo)">
+          <div class="artigo__figura-espaco" aria-hidden="true">
+            <span class="artigo__figura-nota">O profeta e a Palavra</span>
+            <span class="artigo__figura-medida">horizontal &middot; mín. 1600 px de largura</span>
+          </div>
+          <figcaption>
+            De Enoque a esta era, Deus sempre confiou a Sua Palavra a um homem.
+          </figcaption>
+        </figure>
+
+        <figure class="artigo__citacao artigo__citacao--chave">
           <blockquote>
             <p>
               Certamente o Senhor Jeová não fará coisa alguma, sem ter revelado o seu segredo aos
@@ -440,36 +666,76 @@
           </blockquote>
           <figcaption class="artigo__referencia">Amós 3:7</figcaption>
         </figure>
-        <p>
-          Em toda a história registrada nas Escrituras, Deus sempre comunicou a Sua Palavra por meio
-          de profetas. Enoque, profeta antediluviano, previu eventos futuros, incluindo a Segunda
-          Vinda de Cristo. Três gerações depois, Deus levantou Noé para construir a arca e proclamar
-          o dilúvio iminente.
-        </p>
-        <p>
-          Quando Israel seria libertado do Egito, Deus escolheu Moisés como instrumento e transmitiu
-          a Sua Palavra por meio dele — ele era a boca de Deus para o povo. Posteriormente, Deus
-          enviou profetas como Samuel, último dos juízes, que ungiu o primeiro rei, e ainda Elias,
-          Isaías, Jeremias, Amós e Daniel, que receberam a Palavra de Deus para as suas épocas e
-          falaram em nome do Senhor.
-        </p>
-        <figure class="artigo__citacao">
-          <blockquote>
-            <p>
-              E todo o povo viu os trovões e os relâmpagos, e o sonido da buzina, e o monte fumegando;
-              e o povo, vendo isto, retirou-se e pôs-se de longe. E disseram a Moisés: Fala tu conosco,
-              e ouviremos; e não fale Deus conosco, para que não morramos.
-            </p>
-          </blockquote>
-          <figcaption class="artigo__referencia">Êxodo 20:18-19</figcaption>
-        </figure>
-        <p>
-          O povo não suportava ouvir diretamente a voz de Deus. Pediram a Moisés que atuasse como
-          mediador, recebendo as palavras que Deus tinha para eles. Essa atitude foi aprovada por
-          Deus; dali em diante Ele sempre falaria por meio de profetas.
+
+        <p class="artigo__lede">
+          De Enoque a Malaquias, Deus nunca agiu sem antes revelar o Seu segredo a um profeta.
         </p>
 
+        <p class="artigo__importa">
+          <span class="artigo__importa-rotulo">Por que isso importa</span>
+          Se esse é o modo de Deus, então a promessa de um Elias antes do Dia do Senhor não é
+          detalhe: é o sinal pelo qual se reconhece a hora em que vivemos.
+        </p>
+
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">Vá mais fundo &middot; o fundamento bíblico, de Enoque a Moisés</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+            <p>
+              Em toda a história registrada nas Escrituras, Deus sempre comunicou a Sua Palavra por meio
+              de profetas. Enoque, profeta antediluviano, previu eventos futuros, incluindo a Segunda
+              Vinda de Cristo. Três gerações depois, Deus levantou Noé para construir a arca e proclamar
+              o dilúvio iminente.
+            </p>
+            <p>
+              Quando Israel seria libertado do Egito, Deus escolheu Moisés como instrumento e transmitiu
+              a Sua Palavra por meio dele — ele era a boca de Deus para o povo. Posteriormente, Deus
+              enviou profetas como Samuel, último dos juízes, que ungiu o primeiro rei, e ainda Elias,
+              Isaías, Jeremias, Amós e Daniel, que receberam a Palavra de Deus para as suas épocas e
+              falaram em nome do Senhor.
+            </p>
+            <figure class="artigo__citacao">
+              <blockquote>
+                <p>
+                  E todo o povo viu os trovões e os relâmpagos, e o sonido da buzina, e o monte fumegando;
+                  e o povo, vendo isto, retirou-se e pôs-se de longe. E disseram a Moisés: Fala tu conosco,
+                  e ouviremos; e não fale Deus conosco, para que não morramos.
+                </p>
+              </blockquote>
+              <figcaption class="artigo__referencia">Êxodo 20:18-19</figcaption>
+            </figure>
+            <p>
+              O povo não suportava ouvir diretamente a voz de Deus. Pediram a Moisés que atuasse como
+              mediador, recebendo as palavras que Deus tinha para eles. Essa atitude foi aprovada por
+              Deus; dali em diante Ele sempre falaria por meio de profetas.
+            </p>
+          </div>
+        </details>
+
         <h3>O espírito de Elias vem cinco vezes</h3>
+
+        <ul class="artigo__pontos">
+          <li class="artigo__ponto">
+            <strong>Elias, o tisbita.</strong> A primeira, sobre o próprio profeta.
+          </li>
+          <li class="artigo__ponto">
+            <strong>Eliseu.</strong> A segunda, em porção dobrada (II Reis 2:15).
+          </li>
+          <li class="artigo__ponto">
+            <strong>João Batista.</strong> A terceira, precursor da Primeira Vinda (Lucas 1:17).
+          </li>
+          <li class="artigo__ponto">
+            <strong>O profeta desta era.</strong> A quarta, antes da grande tribulação.
+          </li>
+          <li class="artigo__ponto">
+            <strong>Uma das testemunhas.</strong> A quinta, em Apocalipse 11.
+          </li>
+        </ul>
+
         <p>
           Nas Escrituras, depois do ministério de Elias, o tisbita, o Espírito que estava nele
           repousou sobre outros servos de Deus. A segunda manifestação veio em porção dobrada sobre
@@ -482,6 +748,15 @@
           terra. É crucial ressaltar que isso não se refere a reencarnação, mas ao constante propósito
           de Deus de manifestar o ministério de Elias na história.
         </p>
+
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">Vá mais fundo &middot; por que são dois Elias, e não um</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
 
         <h3>O precursor da Primeira Vinda</h3>
         <p>
@@ -613,6 +888,18 @@
           inseriu em Sua Palavra.
         </p>
 
+          </div>
+        </details>
+
+        <details class="artigo__fundo">
+          <summary>
+            <svg class="artigo__fundo-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+            <span class="artigo__fundo-abrir">Vá mais fundo &middot; o precursor da Segunda Vinda e os sinais desta hora</span>
+          </summary>
+          <div class="artigo__fundo-corpo">
+
         <h3>O precursor da Segunda Vinda</h3>
         <p>
           A mente humana pode enxergar apenas um Elias, mas Jesus fala de um Elias no passado e de
@@ -687,6 +974,10 @@
           passado, porém, existem aqueles predestinados por Deus para ouvir a Sua voz por meio do Seu
           profeta, e estão se alimentando e se preparando por meio de sua mensagem.
         </p>
+
+          </div>
+        </details>
+
         <p>
           Essa promessa se cumpriu na vida de <strong>William Marrion Branham</strong>. João Batista
           não tinha o seu nome escrito no Velho Testamento confirmando que era o Elias precursor da
@@ -704,7 +995,7 @@
         </p>
         <div class="btn-row">
           <a routerLink="/william-branham" class="btn btn--primary">Conhecer William Branham</a>
-          <a routerLink="/" fragment="sobre" class="btn btn--outline">Voltar ao início</a>
+          <a amrAncora="sobre" rota="/" class="btn btn--outline">Voltar ao início</a>
         </div>
       </aside>
 
