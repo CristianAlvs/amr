@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { VisualizadorImagemComponent } from '../../shared/ui/visualizador-imagem/visualizador-imagem.component';
 import { ArtigoNavComponent, SecaoArtigo } from '../../layout/artigo-nav/artigo-nav.component';
 import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
 import { AncoraDirective } from '../../shared/directives/ancora.directive';
@@ -13,7 +15,7 @@ export interface Marco {
 
 @Component({
     selector: 'app-william-branham',
-    imports: [PageHeaderComponent, ArtigoNavComponent, BlocosRecolhiveisDirective, AncoraDirective],
+    imports: [PageHeaderComponent, ArtigoNavComponent, BlocosRecolhiveisDirective, AncoraDirective, RouterLink, VisualizadorImagemComponent],
     templateUrl: './william-branham.component.html',
     styleUrl: './william-branham.component.scss'
 })

@@ -25,6 +25,8 @@
             height: auto;
             aspect-ratio: var(--proporcao, var(--ratio-paisagem));
             object-fit: cover;
+            /* Abre no VisualizadorImagemComponent */
+            cursor: zoom-in;
         }
 
         figcaption {
@@ -133,4 +135,10 @@
             color: var(--color-text-muted);
         }
     }
+}
+
+/* Com o visualizador aberto a página por baixo não rola. O <dialog> modal
+   bloqueia clique e foco, mas não a roda do mouse. */
+html:has(.visualizador[open]) {
+    overflow: hidden;
 }

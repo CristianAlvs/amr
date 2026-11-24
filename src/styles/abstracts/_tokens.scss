@@ -49,6 +49,10 @@
      usa no fundo de erro. Texto marinho sobre ele: 13,3:1. */
   --color-quote-bg:      color-mix(in srgb, var(--brand-areia) 40%, var(--color-bg-white));
 
+  /* Fundo do visualizador de imagem. Translúcido para a página continuar
+     aparecendo por trás, e o leitor saber que não saiu dela. */
+  --color-overlay:       color-mix(in srgb, var(--brand-carvao) 88%, transparent);
+
   --color-border:        #DDE3E8;
   --color-border-strong: #C2CCD6;
   --color-border-dark:   #23384C;

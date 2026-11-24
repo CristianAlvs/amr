@@ -35,7 +35,8 @@ src/app/
                            com ele. O page-header é a faixa de título das rotas
                            de /pages, e o artigo-nav a navegação lateral delas
   shared/ui/               cards (culto-card, pastor-card, schedule-event) — todos ainda
-                           placeholder; ver Pendências
+                           placeholder; ver Pendências — e o visualizador-imagem, que
+                           abre em tela cheia as fotos de .artigo__figura
   shared/directives/       blocos-recolhiveis: os <details> das páginas de leitura
   services/                scroll-reveal (observer de animação), seo (title/meta
                            por rota), send-email (stub)
@@ -270,8 +271,10 @@ acende na seguinte.
   (title/description/canonical) em [app.routes.ts](src/app/app.routes.ts), `<app-page-header>` no
   topo e `id="conteudo" tabindex="-1"` no wrapper do artigo — o skip-link do shell aponta para
   esse id em **todas** as rotas. Se ela tiver blocos "Vá mais fundo", o mesmo wrapper leva
-  `amrBlocosRecolhiveis`. E a `<section>` nova só aparece na navegação lateral se entrar também no
-  array `secoes` do TS — o spec da página conta os itens, então ele muda junto.
+  `amrBlocosRecolhiveis`. Se tiver fotos, o `<article>` leva `#artigo` e logo depois dele vem
+  `<app-visualizador-imagem [em]="artigo" />` — sem isso a foto não amplia no clique. E a
+  `<section>` nova só aparece na navegação lateral se entrar também no array `secoes` do TS — o
+  spec da página conta os itens, então ele muda junto.
 
 ## Conteúdo e idioma
 

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { VisualizadorImagemComponent } from '../../shared/ui/visualizador-imagem/visualizador-imagem.component';
 import { ArtigoNavComponent, SecaoArtigo } from '../../layout/artigo-nav/artigo-nav.component';
 import { PageHeaderComponent } from '../../layout/page-header/page-header.component';
 import { AncoraDirective } from '../../shared/directives/ancora.directive';
@@ -16,7 +18,7 @@ export interface Paralelo {
 
 @Component({
     selector: 'app-pontos-doutrinarios',
-    imports: [PageHeaderComponent, ArtigoNavComponent, BlocosRecolhiveisDirective, AncoraDirective],
+    imports: [PageHeaderComponent, ArtigoNavComponent, BlocosRecolhiveisDirective, AncoraDirective, RouterLink, VisualizadorImagemComponent],
     templateUrl: './pontos-doutrinarios.component.html',
     styleUrl: './pontos-doutrinarios.component.scss'
 })

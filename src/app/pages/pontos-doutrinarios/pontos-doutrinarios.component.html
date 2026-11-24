@@ -7,7 +7,7 @@
   <div class="container artigo-layout">
     <app-artigo-nav [secoes]="secoes" />
 
-    <article class="artigo" id="conteudo" tabindex="-1" amrBlocosRecolhiveis>
+    <article #artigo class="artigo" id="conteudo" tabindex="-1" amrBlocosRecolhiveis>
 
       <!-- O essencial, para quem tem cinco minutos. O texto completo continua
            inteiro abaixo, dentro dos blocos "Vá mais fundo". -->
@@ -38,12 +38,13 @@
       <section class="artigo__bloco" id="batismo">
         <h2>Por que batizar em nome do Senhor Jesus Cristo?</h2>
 
-        <figure class="artigo__figura artigo__figura--grande artigo__figura--vazia"
-                style="--proporcao: var(--ratio-largo)">
-          <div class="artigo__figura-espaco" aria-hidden="true">
-            <span class="artigo__figura-nota">Batismo nas águas</span>
-            <span class="artigo__figura-medida">horizontal &middot; mín. 1600 px de largura</span>
-          </div>
+        <figure class="artigo__figura artigo__figura--grande"
+                style="--proporcao: 2386 / 949">
+          <img src="/fotos/branham-batismo-1600.jpg"
+               srcset="/fotos/branham-batismo-480.jpg 480w, /fotos/branham-batismo-960.jpg 960w, /fotos/branham-batismo-1600.jpg 1600w"
+               sizes="(min-width: 1200px) 60rem, 100vw"
+               width="1600" height="636" loading="lazy" decoding="async"
+               alt="William Branham, com água pela cintura, batiza uma mulher no rio; ao fundo, dois barcos e a margem arborizada.">
           <figcaption>
             O batismo nas águas em nome do Senhor Jesus Cristo, como a igreja apostólica batizava.
           </figcaption>
@@ -535,12 +536,13 @@
       <section class="artigo__bloco" id="jeova">
         <h2>Jesus Cristo é o Jeová do Velho Testamento</h2>
 
-        <figure class="artigo__figura artigo__figura--calha artigo__figura--vazia"
-                style="--proporcao: var(--ratio-paisagem)">
-          <div class="artigo__figura-espaco" aria-hidden="true">
-            <span class="artigo__figura-nota">Bíblia aberta</span>
-            <span class="artigo__figura-medida">horizontal &middot; mín. 900 px de largura</span>
-          </div>
+        <figure class="artigo__figura artigo__figura--calha"
+                style="--proporcao: 612 / 351">
+          <img src="/fotos/biblia-aberta-612.jpg"
+               srcset="/fotos/biblia-aberta-480.jpg 480w, /fotos/biblia-aberta-612.jpg 612w"
+               sizes="(min-width: 1200px) 12rem, 22rem"
+               width="612" height="351" loading="lazy" decoding="async"
+               alt="Uma Bíblia aberta ao meio, de capa de couro marrom e páginas de bordas douradas.">
           <figcaption>Os dois Testamentos falando do mesmo Senhor.</figcaption>
         </figure>
 
@@ -646,12 +648,13 @@
       <section class="artigo__bloco" id="palavra-ao-profeta">
         <h2>A Palavra vem ao profeta</h2>
 
-        <figure class="artigo__figura artigo__figura--grande artigo__figura--vazia"
-                style="--proporcao: var(--ratio-largo)">
-          <div class="artigo__figura-espaco" aria-hidden="true">
-            <span class="artigo__figura-nota">O profeta e a Palavra</span>
-            <span class="artigo__figura-medida">horizontal &middot; mín. 1600 px de largura</span>
-          </div>
+        <figure class="artigo__figura artigo__figura--grande"
+                style="--proporcao: 2386 / 1200">
+          <img src="/fotos/branham-auditorio-1600.jpg"
+               srcset="/fotos/branham-auditorio-480.jpg 480w, /fotos/branham-auditorio-960.jpg 960w, /fotos/branham-auditorio-1600.jpg 1600w"
+               sizes="(min-width: 1200px) 60rem, 100vw"
+               width="1600" height="805" loading="lazy" decoding="async"
+               alt="Dois homens frente a frente junto ao púlpito, num auditório lotado, com a plateia e a galeria cheias.">
           <figcaption>
             De Enoque a esta era, Deus sempre confiou a Sua Palavra a um homem.
           </figcaption>
@@ -1000,5 +1003,6 @@
       </aside>
 
     </article>
+    <app-visualizador-imagem [em]="artigo" />
   </div>
 </div>

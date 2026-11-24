@@ -1,0 +1,86 @@
+/* O host cai dentro do grid de .artigo-layout. Sem isto ele ocuparia uma
+   célula e abriria um gap a mais no fim da página. */
+:host {
+    display: contents;
+}
+
+/* O dialog ocupa a viewport inteira e é transparente: o escuro vem do
+   ::backdrop. Assim todo clique fora da foto cai no próprio <dialog>, e é isso
+   que o componente usa para fechar no clique de fundo. */
+.visualizador {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: var(--space-16) var(--space-4) var(--space-6);
+    border: 0;
+    background: transparent;
+    color: var(--color-text-on-dark);
+
+    &::backdrop {
+        background: var(--color-overlay);
+    }
+
+    /* Só quando aberto: um display no seletor puro venceria o
+       dialog:not([open]) { display: none } do navegador e o deixaria visível. */
+    &[open] {
+        display: grid;
+        place-items: center;
+    }
+
+    &__figura {
+        display: grid;
+        justify-items: center;
+        gap: var(--space-3);
+        max-width: 100%;
+        max-height: 100%;
+        margin: 0;
+    }
+
+    /* Inteira, sem recorte: contain e os dois limites. O desconto na altura
+       reserva o lugar do botão em cima e de duas linhas de legenda embaixo. */
+    &__foto {
+        max-width: 100%;
+        max-height: calc(100dvh - var(--space-16) * 2 - var(--space-12));
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+
+    &__legenda {
+        max-width: var(--measure);
+        font-size: var(--text-lg);
+        line-height: 1.5;
+        text-align: center;
+        color: var(--color-text-on-dark);
+        text-wrap: pretty;
+    }
+
+    &__fechar {
+        position: fixed;
+        top: var(--space-3);
+        right: var(--space-3);
+        display: grid;
+        place-items: center;
+        width: 44px;  /* alvo de toque */
+        height: 44px;
+        padding: 0;
+        border: 0;
+        border-radius: var(--radius-full);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        transition: background-color var(--transition-fast);
+
+        &:hover {
+            background: var(--color-border-dark);
+        }
+
+        /* O anel azul global some sobre o carvão */
+        &:focus-visible {
+            outline-color: var(--color-text-on-dark);
+            border-radius: var(--radius-full);
+        }
+    }
+}

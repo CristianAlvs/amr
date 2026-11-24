@@ -7,7 +7,7 @@
   <div class="container artigo-layout">
     <app-artigo-nav [secoes]="secoes" />
 
-    <article class="artigo" id="conteudo" tabindex="-1" amrBlocosRecolhiveis>
+    <article #artigo class="artigo" id="conteudo" tabindex="-1" amrBlocosRecolhiveis>
 
       <!-- O essencial, para quem tem cinco minutos. O texto completo continua
            inteiro abaixo, dentro dos blocos "Vá mais fundo". -->
@@ -243,13 +243,14 @@
       <section class="artigo__bloco" id="quem-e">
         <h2>Quem é William Marrion Branham?</h2>
 
-        <figure class="artigo__figura artigo__figura--calha artigo__figura--vazia"
-                style="--proporcao: var(--ratio-retrato)">
-          <div class="artigo__figura-espaco" aria-hidden="true">
-            <span class="artigo__figura-nota">Retrato do Ir. Branham</span>
-            <span class="artigo__figura-medida">vertical &middot; mín. 760 px de altura</span>
-          </div>
-          <figcaption>William Marrion Branham (1909&ndash;1965).</figcaption>
+        <figure class="artigo__figura artigo__figura--calha"
+                style="--proporcao: 600 / 428">
+          <img src="/fotos/branham-cabana-600.jpg"
+               srcset="/fotos/branham-cabana-480.jpg 480w, /fotos/branham-cabana-600.jpg 600w"
+               sizes="(min-width: 1200px) 12rem, 22rem"
+               width="600" height="428" loading="lazy" decoding="async"
+               alt="Cabana de toras com telhado de tabuinhas, uma porta de madeira e um alpendre lateral desabando.">
+          <figcaption>A cabana de madeira no Condado de Cumberland, Kentucky, onde ele nasceu em 6 de abril de 1909.</figcaption>
         </figure>
 
         <p class="artigo__lede">
@@ -345,13 +346,14 @@
       <section class="artigo__bloco" id="mocidade">
         <h2>Os anos de mocidade</h2>
 
-        <figure class="artigo__figura artigo__figura--calha artigo__figura--vazia"
-                style="--proporcao: var(--ratio-paisagem)">
-          <div class="artigo__figura-espaco" aria-hidden="true">
-            <span class="artigo__figura-nota">Jeffersonville, anos 1930</span>
-            <span class="artigo__figura-medida">horizontal &middot; mín. 900 px de largura</span>
-          </div>
-          <figcaption>A cidade de Indiana para onde a família voltou depois da morte de Edward.</figcaption>
+        <figure class="artigo__figura artigo__figura--calha"
+                style="--proporcao: 557 / 768">
+          <img src="/fotos/branham-mocidade-557.jpg"
+               srcset="/fotos/branham-mocidade-480.jpg 480w, /fotos/branham-mocidade-557.jpg 557w"
+               sizes="(min-width: 1200px) 12rem, 22rem"
+               width="557" height="768" loading="lazy" decoding="async"
+               alt="William Branham jovem, de camisa branca e gravata, sentado num barco apoiado em cavaletes, à beira de um rio.">
+          <figcaption>William Branham na mocidade.</figcaption>
         </figure>
 
         <p class="artigo__lede">
@@ -380,14 +382,15 @@
       <section class="artigo__bloco" id="chamado">
         <h2>Deus o chama para a Sua grande obra</h2>
 
-        <figure class="artigo__figura artigo__figura--grande artigo__figura--vazia"
-                style="--proporcao: var(--ratio-largo)">
-          <div class="artigo__figura-espaco" aria-hidden="true">
-            <span class="artigo__figura-nota">Batismo no Rio Ohio</span>
-            <span class="artigo__figura-medida">horizontal &middot; mín. 1600 px de largura</span>
-          </div>
+        <figure class="artigo__figura artigo__figura--grande"
+                style="--proporcao: 2386 / 949">
+          <img src="/fotos/branham-batismo-1600.jpg"
+               srcset="/fotos/branham-batismo-480.jpg 480w, /fotos/branham-batismo-960.jpg 960w, /fotos/branham-batismo-1600.jpg 1600w"
+               sizes="(min-width: 1200px) 60rem, 100vw"
+               width="1600" height="636" loading="lazy" decoding="async"
+               alt="William Branham, com água pela cintura, batiza uma mulher no rio; ao fundo, dois barcos e a margem arborizada.">
           <figcaption>
-            Jeffersonville, 11 de junho de 1933 — o dia em que a Luz desceu diante da multidão.
+            O irmão Branham batizando nas águas do Rio Ohio, na década de 1930.
           </figcaption>
         </figure>
 
@@ -528,12 +531,13 @@
       <section class="artigo__bloco" id="coluna-de-fogo">
         <h2>A Coluna de Fogo</h2>
 
-        <figure class="artigo__figura artigo__figura--grande artigo__figura--vazia"
-                style="--proporcao: var(--ratio-retrato)">
-          <div class="artigo__figura-espaco" aria-hidden="true">
-            <span class="artigo__figura-nota">A Coluna de Fogo</span>
-            <span class="artigo__figura-medida">vertical &middot; mín. 1200 px de altura</span>
-          </div>
+        <figure class="artigo__figura"
+                style="--proporcao: 3 / 4">
+          <img src="/fotos/branham-coluna-de-fogo-1000.jpg"
+               srcset="/fotos/branham-coluna-de-fogo-480.jpg 480w, /fotos/branham-coluna-de-fogo-1000.jpg 1000w"
+               sizes="(min-width: 769px) 42rem, 100vw"
+               width="1000" height="1333" loading="lazy" decoding="async"
+               alt="William Branham de perfil, de pé junto ao púlpito com microfones, e uma faixa de luz acima da sua cabeça.">
           <figcaption>
             Houston, 24 de janeiro de 1950 — a fotografia autenticada por George Lacy como o único
             ser sobrenatural já captado pela lente de uma câmera.
@@ -657,12 +661,13 @@
       <section class="artigo__bloco" id="nuvem">
         <h2>A Nuvem Sobrenatural</h2>
 
-        <figure class="artigo__figura artigo__figura--grande artigo__figura--vazia"
-                style="--proporcao: var(--ratio-largo)">
-          <div class="artigo__figura-espaco" aria-hidden="true">
-            <span class="artigo__figura-nota">A Nuvem Sobrenatural</span>
-            <span class="artigo__figura-medida">horizontal &middot; mín. 1600 px de largura</span>
-          </div>
+        <figure class="artigo__figura artigo__figura--grande"
+                style="--proporcao: 1000 / 242">
+          <img src="/fotos/branham-nuvem-1000.jpg"
+               srcset="/fotos/branham-nuvem-480.jpg 480w, /fotos/branham-nuvem-1000.jpg 1000w"
+               sizes="(min-width: 1200px) 60rem, 100vw"
+               width="1000" height="242" loading="lazy" decoding="async"
+               alt="Três fotografias lado a lado de uma nuvem em forma de anel no céu do entardecer.">
           <figcaption>
             Flagstaff, Arizona, 28 de fevereiro de 1963 — a 43 km de altitude, visível por 28 minutos.
           </figcaption>
@@ -839,5 +844,6 @@
       </aside>
 
     </article>
+    <app-visualizador-imagem [em]="artigo" />
   </div>
 </div>
